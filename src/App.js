@@ -1,21 +1,21 @@
-import InputField from './components/InputField'
+import React from "react";
+import { Route, Routes } from 'react-router-dom';
+import Home from "./components/Home";
+import Login from "./components/login";
+import Teste from "./components/Teste";
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div className="login-container">
-      <h2 className="form-title"> Fazer o login </h2>
-
-      <form action="#" className="login-form">
-        <InputField type="text" placeholder="Usuário" icon="person" />
-        <InputField type="password" placeholder="Senha" icon="lock"/>
-
-        <a href="#" className="forgot-password">Esqueceu a senha?</a>
-
-        <button className="login-button">Entrar</button>
-      </form>
-      
+    <div>
+      <NavBar />
+      <Routes> 
+        <Route path="/" elemnt={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Teste" element={<Teste />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
