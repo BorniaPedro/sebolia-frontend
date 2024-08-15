@@ -30,6 +30,7 @@ body {
   background: #FFFFFF;
   box-shadow: 0 10px 20 px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
+  text-align: center;
 }
 
 .login-container .form-title {
@@ -96,6 +97,7 @@ body {
 .login-form .login-button {
   width: 100%;
   height: 54px;
+  margin-bottom: 0.5rem;
   cursor: pointer;
   outline: none;
   border: 1px solid #105d63;
@@ -103,7 +105,6 @@ body {
   font-weight: 500;
   font-size: 1.2rem;
   background: #76ABAE;
-  margin-top: 1.2rem;
   border-radius: 0.3rem;
   transition: 0.2s ease;
 }
@@ -112,16 +113,12 @@ body {
   background: #105d63;
 }
 
-.login-container .forgot-password {
-  text-align: center;
-  font-weight: 500;
-  margin: 0.5rem 0 0.3rem;
-}
-
 .login-container a {
   color: #105d63;
   font-weight: 500;
   text-decoration: none;
+  font-size: 1.1rem;
+  text-align: center;
 }
 
 .login-container a:hover {
