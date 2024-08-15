@@ -1,5 +1,5 @@
 import React from "react";
-import "../cadastroLivro.css";
+import "../styles/cadastroLivro.css";
 
 function CadastroLivro() {
     return(

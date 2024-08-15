@@ -1,6 +1,7 @@
 import React from "react";
 import SocialLogin from "./InputField";
-import "../login.css";
+import "../styles/login.css";
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -11,9 +12,11 @@ function Login() {
         <SocialLogin type="text" placeholder="Usuário" icon="person" />
         <SocialLogin type="password" placeholder="Senha" icon="lock" />
 
-        <a href="#" className="create-account">Não tem uma conta?</a>
+        <button className="login-button">Entrar</button>
 
-        <button className="login-button">Entrar</button>	
+        <Link to="/CriarConta" className="create-account">
+          Não tem uma conta?
+        </Link>	
       </form>
       
     </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const SocialLogin = ({type ,placeholder, icon}) => {
     return (
