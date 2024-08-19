@@ -1,24 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/cadastroLivro.css";
 
 function CadastroLivro() {
-    const [nomeLivro, setNomeLivro] = useState("");
+    const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
-    const [genero, setGenero] = useState("");
     const [anoLancamento, setAnoLancamento] = useState("");
     const [editora, setEditora] = useState("");
     const [numeroPaginas, setNumeroPaginas] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
-            nomeLivro,
-            autor,
-            genero,
-            anoLancamento,
-            editora,
-            numeroPaginas
+        const url = "http://localhost:3500/livro";
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                titulo: titulo,
+                autor: autor,
+                ano: anoLancamento,
+                editora: editora,
+            })
+        })
+        .then(async (response) => {
+            if(!response.ok){
+                const body = await response.json();
+                console.log(body)
+                alert(body.message);
+                return;
+            }
+
+            alert("Livro cadastrado com sucesso!");
         });
+        
     };
 
     return (
@@ -30,8 +46,8 @@ function CadastroLivro() {
                     type="text"
                     placeholder="Nome do Livro"
                     className="input-field"
-                    value={nomeLivro}
-                    onChange={(e) => setNomeLivro(e.target.value)}
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
                     required
                 />
                 <input
@@ -40,14 +56,6 @@ function CadastroLivro() {
                     className="input-field"
                     value={autor}
                     onChange={(e) => setAutor(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Gênero"
-                    className="input-field"
-                    value={genero}
-                    onChange={(e) => setGenero(e.target.value)}
                     required
                 />
                 <input
