@@ -1,0 +1,77 @@
+/*Fonte Montserrat*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+  }
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EEEEEE;
+}
+
+#root {
+    width: 100%;
+    padding: 0 0.6rem;
+}
+
+.listagem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    max-height: 700px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    background: #FFFFFF;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.header{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.titulo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cadastro-livro{
+    background-color: #2b39d6;
+    color: #FFFFFF;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    
+}
+
+.livro-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.livro-container {
+    border: #2b39d6 3px solid;
+    border-radius: 3rem;
+    overflow: hidden;
+    padding: 1rem;
+}
