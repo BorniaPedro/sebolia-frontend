@@ -2,76 +2,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #EEEEEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EEEEEE;
 }
 
 #root {
-    width: 100%;
-    padding: 0 0.6rem;
+  width: 100%;
+  padding: 0 0.6rem;
 }
 
 .listagem-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    max-height: 700px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    background: #FFFFFF;
-    border-radius: 1rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: #FFFFFF;
+  border-radius: 1rem;
+  margin-top: 60px;
 }
 
-.header{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 2rem;
-    position: relative;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+  position: relative;
 }
 
 .titulo {
-    font-size: 1.8rem;
-    font-weight: 600;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.cadastro-livro{
-    background-color: #2b39d6;
-    color: #FFFFFF;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    
+.cadastro-livro {
+  background-color: #2b39d6;
+  color: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
 }
 
 .livro-table {
-    width: 90%;
-    border-collapse: collapse;
-    margin-top: 2rem;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 15px;
 }
 
 .livro-container {
-    border: #2b39d6 3px solid;
-    border-radius: 3rem;
-    overflow: hidden;
-    padding: 1rem;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.livro-titulo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.livro-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.livro-autor, .livro-editora, .livro-ano {
+  margin-right: 1rem;
+}
+
+button {
+  background-color: #2b39d6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1a2a96;
+}
+
+.options-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.opcoes {
+  display: block;
+  margin-bottom: 0.5rem;
+  background-color: #2b39d6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.opcoes:hover {
+  background-color: #1a2a96;
 }
