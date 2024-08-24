@@ -1,4 +1,4 @@
-/*Fonte Montserrat*/
+/*Estilos*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
@@ -69,13 +69,15 @@ body {
 }
 
 .livro-container {
+  position: relative;
   background: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   padding: 1rem;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .livro-titulo {
@@ -86,40 +88,45 @@ body {
 
 .livro-info {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 1.5rem;
+  align-items: center;  
+  position: relative;
 }
 
-.livro-autor, .livro-editora, .livro-ano {
-  margin-right: 1rem;
-}
-
-button {
-  background-color: #2b39d6;
-  color: white;
+.livro-editar{
+  background: none;
   border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #1a2a96;
-}
-
-.options-menu {
   position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.editar-button:hover {
+  color: #4fb9c0;
+}
+
+.material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.opcoes-menu {
+  position: absolute;
+  top: 80%;
+  right: 2%;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
-  margin-top: 0.5rem;
+  padding-bottom: 1rem;
+  z-index: 1000;
 }
 
 .opcoes {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   background-color: #2b39d6;
   color: white;
   border: none;
@@ -128,6 +135,8 @@ button:hover {
   cursor: pointer;
   width: 100%;
   text-align: left;
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .opcoes:hover {
