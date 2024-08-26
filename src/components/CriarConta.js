@@ -15,7 +15,7 @@ function CriarConta() {
         fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application.json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 // nome: nome,
@@ -76,4 +76,4 @@ function CriarConta() {
     )
 }
 
-export default CriarConta
+export default CriarConta; 
