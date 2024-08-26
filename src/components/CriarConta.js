@@ -70,7 +70,7 @@ function CriarConta() {
                     required
                 />
 
-                <button onClick={handleSubmit}className="login-button">Criar Conta</button>
+                <button onClick={handleSubmit} className="login-button">Criar Conta</button>
             </form>
         </div>
     )
