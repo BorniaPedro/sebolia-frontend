@@ -6,6 +6,7 @@ import CadastroLivro from "./components/CadastroLivro";
 import CriarConta from "./components/CriarConta";
 import NavBar from './components/NavBar';
 import "./styles/NavBar.css";
+import ListarExemplar from "./components/ListarExemplar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/CadastroLivro" element={<CadastroLivro />} />
         <Route path="/CriarConta" element={<CriarConta />} />
+        <Route path="/ListarExemplar" element={<ListarExemplar/>} />
       </Routes>
     </div>
   );
