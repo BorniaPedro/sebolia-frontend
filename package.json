@@ -19,6 +19,7 @@
     "resolve-url-loader": "^5.0.0",
     "sourcemap-codec": "^1.4.8",
     "svgo": "^2.0.0",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -47,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
