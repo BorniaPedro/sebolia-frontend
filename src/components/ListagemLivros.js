@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import "../styles/listagemLivros.css"
-import { livros } from "./LivroData";
 
 function ListagemLivros() {
 
@@ -23,8 +22,8 @@ function ListagemLivros() {
     const response = await fetch(url, {credentials: "include"});
 
     const json = await response.json();
-    setUser(json);
-    return json;
+    setUser(json.user);
+    return json.user;
   }
   
   const [showOptions, setShowOptions] = useState({});
@@ -42,17 +41,17 @@ function ListagemLivros() {
     }
   };
 
-  useEffect(() => {
-    const usuarioPromise = getSession();
-    usuarioPromise.then((o) =>{
-      console.log(o.user)
-      if(!o.user){
-        alert("É necessário estar logado para acessar essa tela");
-        return;
-      }
+  const validateUser = async() => {
+    const usuario = await getSession();
+    if(!usuario){
+      alert("É necessário estar logado para acessar essa tela");
+      window.location.href = "http://localhost:3000/Login";
+    }
+  }
 
-      getLivros();
-    })
+  useEffect(() => {
+    validateUser();
+    getLivros();
     
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -64,14 +63,17 @@ function ListagemLivros() {
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Livros</h2>
-        <Link to="/CadastroLivro" className="cadastro-livro">
-          Cadastrar Livro
-        </Link>
+        {user?.role === "admin" &&
+          <Link to="/CadastroLivro" className="cadastro-livro">
+            Cadastrar Livro
+          </Link>
+        }
+        
       </div>
 
       <table className="livro-table">
         <tbody>
-          {livros.map((book) => (
+          {books.map((book) => (
             <tr key={book.id} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{book.titulo}</div>
@@ -85,8 +87,10 @@ function ListagemLivros() {
                 </button>
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
-                    <Link to={`/CadastroLivro/${book.id}`} className="opcoes">Editar Livro</Link>
                     <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
+                      {user?.role === "admin" &&
+                     <Link to={`/CadastroLivro/?livro=${book.id}`} className="opcoes">Editar Livro</Link>
+                    }
                   </div>
                 )}
               </td>
