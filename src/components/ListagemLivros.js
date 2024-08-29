@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../styles/listagemLivros.css"
+import { livros } from "./LivroData";
 
 function ListagemLivros() {
 
@@ -28,10 +29,10 @@ function ListagemLivros() {
   
   const [showOptions, setShowOptions] = useState({});
 
-  const toggleOptions = (bookId) => {
+  const toggleOptions = (livroId) => {
     setShowOptions((prevState) => ({
       ...prevState,
-      [bookId]: !prevState[bookId],
+      [livroId]: !prevState[livroId],
     }));
   };
 
@@ -70,7 +71,7 @@ function ListagemLivros() {
 
       <table className="livro-table">
         <tbody>
-          {books.map((book) => (
+          {livros.map((book) => (
             <tr key={book.id} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{book.titulo}</div>
@@ -84,7 +85,7 @@ function ListagemLivros() {
                 </button>
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
-                    <Link to="/EditarLivro" className="opcoes">Editar Livro</Link>
+                    <Link to={`/CadastroLivro/${book.id}`} className="opcoes">Editar Livro</Link>
                     <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
                   </div>
                 )}
