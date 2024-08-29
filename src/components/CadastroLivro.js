@@ -1,19 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import "../styles/cadastroLivro.css";
 
 function CadastroLivro() {
+    const [id, setId] = useState("");
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [anoLancamento, setAnoLancamento] = useState("");
     const [editora, setEditora] = useState("");
-    const [numeroPaginas, setNumeroPaginas] = useState("");
+
+    const [user, setUser] = useState(null);
+    const location = useLocation();
+    const param = location.search.split("=");
+
+    const validateUser = async() => {
+        const usuario = await getSession();
+        if(usuario?.role !== "admin"){
+          alert("É necessário ser administrador para acessar essa tela");
+          window.location.href = "http://localhost:3000/Login";
+        }
+    }
+
+    const getSession = async () =>{
+        const url = "http://localhost:3500/login/session";
+    
+        const response = await fetch(url, {credentials: "include"});
+    
+        const json = await response.json();
+        setUser(json.user);
+        return json.user;
+      }
+
+    useEffect(() =>{
+        validateUser();
+        if(param && param[0] === "?livro"){
+            getLivro(param[1]);
+        }
+    }, []);
+
+    const getLivro = async (id) => {
+        const url = `http://localhost:3500/livro?id=${id}`;
+
+        const response = await fetch(url, {credentials: "include"});
+      
+        const json = await response.json();
+        setLivroEdicao(json[0]);
+    };
+
+    const setLivroEdicao = (livro) =>{
+        setId(livro.id);
+        setTitulo(livro.titulo || "");
+        setAutor(livro.autor || "");
+        setAnoLancamento(livro.ano || "");
+        setEditora(livro.editora || "");
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = "http://localhost:3500/livro";
+
+        let url;
+        let method;
+
+        if (id) {
+            url = `http://localhost:3500/livro/${id}`;
+            method = "PUT";
+        } else {
+            url = "http://localhost:3500/livro";
+            method = "POST";
+        }
 
         fetch(url, {
-            method: "POST",
+            method: method,
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -25,14 +83,14 @@ function CadastroLivro() {
             })
         })
         .then(async (response) => {
+            console.log(response)
             if(!response.ok){
                 const body = await response.json();
-                console.log(body)
                 alert(body.message);
                 return;
             }
 
-            alert("Livro cadastrado com sucesso!");
+            alert("Livro salvo com sucesso!");
         });
         
     };
@@ -72,14 +130,6 @@ function CadastroLivro() {
                     className="input-field"
                     value={editora}
                     onChange={(e) => setEditora(e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Número de Páginas"
-                    className="input-field"
-                    value={numeroPaginas}
-                    onChange={(e) => setNumeroPaginas(e.target.value)}
                     required
                 />
 
