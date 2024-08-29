@@ -1,29 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../styles/listagemLivros.css"
+import { livros } from "./LivroData";
 
 function ListagemLivros() {
-
-  const [books] = useState([
-    { id: 1, titulo: "O senhor dos anéis: O retorno do rei", autor: "J. R. R. Tolkien", editora: "Darkside", ano: "1955" },
-    { id: 2, titulo: "Livro 2", autor: "Autor 2", editora: "Editora 2", ano: "Ano 2" },
-    { id: 3, titulo: "Nome do Livro 3", autor: "Autor 3", editora: "Editora 3", ano: "Ano 3" },
-    { id: 4, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 5, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 6, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 7, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 8, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 9, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-    { id: 10, titulo: "Livro 4", autor: "Autor 4", editora: "Editora 4", ano: "Ano 4" },
-
-  ]);
-  
   const [showOptions, setShowOptions] = useState({});
 
-  const toggleOptions = (bookId) => {
+  const toggleOptions = (livroId) => {
     setShowOptions((prevState) => ({
       ...prevState,
-      [bookId]: !prevState[bookId],
+      [livroId]: !prevState[livroId],
     }));
   };
 
@@ -51,7 +37,7 @@ function ListagemLivros() {
 
       <table className="livro-table">
         <tbody>
-          {books.map((book) => (
+          {livros.map((book) => (
             <tr key={book.id} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{book.titulo}</div>
@@ -65,7 +51,7 @@ function ListagemLivros() {
                 </button>
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
-                    <Link to="/EditarLivro" className="opcoes">Editar Livro</Link>
+                    <Link to={`/CadastroLivro/${book.id}`} className="opcoes">Editar Livro</Link>
                     <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
                   </div>
                 )}
