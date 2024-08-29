@@ -22,8 +22,8 @@ function ListagemLivros() {
     const response = await fetch(url, {credentials: "include"});
 
     const json = await response.json();
-    setUser(json);
-    return json;
+    setUser(json.user);
+    return json.user;
   }
   
   const [showOptions, setShowOptions] = useState({});
@@ -43,9 +43,8 @@ function ListagemLivros() {
 
   useEffect(() => {
     const usuarioPromise = getSession();
-    usuarioPromise.then((o) =>{
-      console.log(o.user)
-      if(!o.user){
+    usuarioPromise.then((u) =>{
+      if(!u){
         alert("É necessário estar logado para acessar essa tela");
         return;
       }
@@ -63,9 +62,12 @@ function ListagemLivros() {
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Livros</h2>
-        <Link to="/CadastroLivro" className="cadastro-livro">
-          Cadastrar Livro
-        </Link>
+        {user?.role === "admin" &&
+          <Link to="/CadastroLivro" className="cadastro-livro">
+            Cadastrar Livro
+          </Link>
+        }
+        
       </div>
 
       <table className="livro-table">
@@ -84,8 +86,10 @@ function ListagemLivros() {
                 </button>
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
-                    <Link to="/EditarLivro" className="opcoes">Editar Livro</Link>
                     <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
+                    {user?.role === "admin" &&
+                     <Link to="/EditarLivro" className="opcoes">Editar Livro</Link>
+                    }
                   </div>
                 )}
               </td>
