@@ -4,6 +4,29 @@ import "../styles/listagemLivros.css"
 import { livros } from "./LivroData";
 
 function ListagemLivros() {
+
+  const [books, setBooks] = useState([]);
+  const [user, setUser] = useState(null);
+
+  const getLivros = async () => {
+    const url = "http://localhost:3500/livro";
+
+    const response = await fetch(url, {credentials: "include"});
+  
+    const json = await response.json();
+    setBooks(json);
+  }
+
+  const getSession = async () =>{
+    const url = "http://localhost:3500/login/session";
+
+    const response = await fetch(url, {credentials: "include"});
+
+    const json = await response.json();
+    setUser(json);
+    return json;
+  }
+  
   const [showOptions, setShowOptions] = useState({});
 
   const toggleOptions = (livroId) => {
@@ -20,6 +43,17 @@ function ListagemLivros() {
   };
 
   useEffect(() => {
+    const usuarioPromise = getSession();
+    usuarioPromise.then((o) =>{
+      console.log(o.user)
+      if(!o.user){
+        alert("É necessário estar logado para acessar essa tela");
+        return;
+      }
+
+      getLivros();
+    })
+    
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
