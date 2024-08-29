@@ -18,13 +18,14 @@ function Login() {
     const url = "http://localhost:3500/login";
 
     fetch(url, {
+      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        usuario: usuario,
-        senha: senha
+        username: usuario,
+        password: senha
       })
     })
     .then(async(response) => {
