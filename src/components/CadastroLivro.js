@@ -9,7 +9,6 @@ function CadastroLivro() {
     const [anoLancamento, setAnoLancamento] = useState("");
     const [editora, setEditora] = useState("");
 
-    const [user, setUser] = useState(null);
     const location = useLocation();
     const param = location.search.split("=");
 
@@ -27,24 +26,24 @@ function CadastroLivro() {
         const response = await fetch(url, {credentials: "include"});
     
         const json = await response.json();
-        setUser(json.user);
         return json.user;
       }
 
     useEffect(() =>{
         validateUser();
+
         if(param && param[0] === "?livro"){
             getLivro(param[1]);
         }
     }, []);
 
     const getLivro = async (id) => {
-        const url = `http://localhost:3500/livro?id=${id}`;
+        const url = `http://localhost:3500/livro/${id}`;
 
         const response = await fetch(url, {credentials: "include"});
       
         const json = await response.json();
-        setLivroEdicao(json[0]);
+        setLivroEdicao(json);
     };
 
     const setLivroEdicao = (livro) =>{
@@ -53,6 +52,14 @@ function CadastroLivro() {
         setAutor(livro.autor || "");
         setAnoLancamento(livro.ano || "");
         setEditora(livro.editora || "");
+    };
+
+    const clear = () =>{
+        setId("");
+        setTitulo("");
+        setAutor("");
+        setAnoLancamento("");
+        setEditora("");
     };
 
     const handleSubmit = async (e) => {
@@ -83,7 +90,6 @@ function CadastroLivro() {
             })
         })
         .then(async (response) => {
-            console.log(response)
             if(!response.ok){
                 const body = await response.json();
                 alert(body.message);
@@ -91,6 +97,7 @@ function CadastroLivro() {
             }
 
             alert("Livro salvo com sucesso!");
+            clear();
         });
         
     };
