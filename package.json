@@ -3,16 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "css-select": "^5.1.0",
     "express": "^4.19.2",
+    "joi": "^17.13.3",
+    "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
+    "resolve-url-loader": "^5.0.0",
+    "sourcemap-codec": "^1.4.8",
+    "svgo": "^2.0.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,8 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
