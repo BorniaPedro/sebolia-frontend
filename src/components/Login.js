@@ -1,5 +1,4 @@
 import React from "react";
-import SocialLogin from "./InputField";
 import "../styles/login.css";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
