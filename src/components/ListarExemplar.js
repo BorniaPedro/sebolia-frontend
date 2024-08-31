@@ -1,48 +1,99 @@
-import React from "react";
-import "../styles/ListarExemplar.css"; // Importa o CSS corretamente
+import React, {useState, useEffect} from "react";
+import "../styles/listagemLivros.css";
+import { Link } from "react-router-dom";
 
-const exemplares = [
-  {
-    id: 1,
-    livroId: "001",
-    estadoConservacao: "Novo",
-    preco: 50.00,
-  },
-  {
-    id: 2,
-    livroId: "002",
-    estadoConservacao: "Usado - Bom",
-    preco: 30.00,
-  },
-  {
-    id: 3,
-    livroId: "003",
-    estadoConservacao: "Usado - Aceitável",
-    preco: 20.00,
-  },
-];
+function ListarExemplar() {
+  const [exemplares, setExemplares] = useState([]);
+  const [user, setUser] = useState(null);
 
-function Listar_Exemplar() {
+  const getExemplares = async () => {
+    const url = "http://localhost:3500/exemplar";
+
+    const response = await fetch(url, {credentials: "include"});
+  
+    const json = await response.json();
+    console.log(json)
+    setExemplares(json);
+  }
+
+  const getSession = async () =>{
+    const url = "http://localhost:3500/login/session";
+
+    const response = await fetch(url, {credentials: "include"});
+
+    const json = await response.json();
+    setUser(json.user);
+    return json.user;
+  }
+  
+  const [showOptions, setShowOptions] = useState({});
+
+  const toggleOptions = (livroId) => {
+    setShowOptions((prevState) => ({
+      ...prevState,
+      [livroId]: !prevState[livroId],
+    }));
+  };
+
+  const handleClickOutside = (event) => {
+    if (!event.target.closest('.opcoes-menu') && !event.target.closest('.livro-editar')) {
+      setShowOptions({});
+    }
+  };
+
+  const validateUser = async() => {
+    const usuario = await getSession();
+    if(!usuario){
+      alert("É necessário estar logado para acessar essa tela");
+      window.location.href = "http://localhost:3000/Login";
+    }
+  }
+
+
+  useEffect(() => {
+    //validateUser();
+    getExemplares();
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="container">
-      <h2 className="header">Lista de Exemplares</h2>
-      <ul>
-        {exemplares.map((exemplar) => (
-          <li key={exemplar.id} className="list-item">
-            <div>
-              <span className="label">ID do Livro:</span> {exemplar.livroId}
-            </div>
-            <div>
-              <span className="label">Estado de Conservação:</span> {exemplar.estadoConservacao}
-            </div>
-            <div>
-              <span className="label">Preço:</span> <span className="price">R${exemplar.preco.toFixed(2)}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div className="listagem-container">
+      <div className="header">
+        <h2 className="titulo">Listagem de Exemplares</h2>
+          <Link to="/CadastroLivro" className="cadastro-livro">
+            Cadastrar Exemplares
+          </Link>
+        
+      </div>
+      <table className="livro-table">
+        <tbody>
+          {exemplares.map((ex) => (
+            <tr key={ex.livroId+ex.estadoConservacao} className="livro-container">
+              <td colSpan="5">
+                <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
+                <div className="livro-info">
+                  <span className="livro-autor">Preço: R${ex.preco}</span>
+                  <span className="livro-editora">Quantidade em Estoque: {ex.quantidade}</span>
+                </div>
+                <button className="livro-editar" onClick={() => toggleOptions(`${ex.livroId} - ${ex.estado}`)}>
+                  <span className="material-symbols-outlined">more_vert</span>
+                </button>
+                {showOptions[`${ex.livroId} - ${ex.estado}`] && (
+                  <div className="opcoes-menu">
+                    <Link to="/Comprar" className="opcoes">Comprar</Link>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
   );
 }
 
-export default Listar_Exemplar;
+export default ListarExemplar;
