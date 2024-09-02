@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from 'react-router-dom';
-import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import CadastroLivro from "./components/CadastroLivro";
 import CriarConta from "./components/CriarConta";
@@ -13,7 +13,7 @@ function App() {
     <div className="app-container">
       <NavBar />
       <Routes> 
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/CadastroLivro" element={<CadastroLivro />} />
         <Route path="/ListagemLivros" element={<ListagemLivros />} />
