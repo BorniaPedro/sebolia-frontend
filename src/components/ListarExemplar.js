@@ -21,7 +21,6 @@ function ListarExemplar() {
     const response = await fetch(url, {credentials: "include"});
   
     const json = await response.json();
-    console.log(json)
     setExemplares(json);
   }
 
@@ -99,7 +98,7 @@ function ListarExemplar() {
       <table className="livro-table">
         <tbody>
           {exemplares.map((ex) => (
-            <tr key={ex.livroId+ex.estado} className="livro-container">
+            <tr key={ex.livroId + ex.estado} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
                 <div className="livro-info">
@@ -114,6 +113,9 @@ function ListarExemplar() {
                     <Link to="/Comprar" className="opcoes">Comprar</Link>
                     {user?.role === "admin" && (
                     <>
+                      <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">
+                          Editar Exemplar
+                      </Link>
                       <div onClick={() => removerExemplar(ex.livroId, ex.estado)} className="opcoes">
                         Remover Exemplar
                       </div>

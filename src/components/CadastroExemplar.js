@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import "../styles/cadastroExemplar.css"
 
 function ListarExemplar() {
@@ -10,24 +11,27 @@ function ListarExemplar() {
     const [preco, setPreco] = useState('');
     const [user, setUser] = useState(null);
 
+    const location = useLocation();
+    const params = new URLSearchParams(location.search.split('?')[1]);
+
     const getLivros = async () => {
-    const url = "http://localhost:3500/livro";
+        const url = "http://localhost:3500/livro";
 
-    const response = await fetch(url, {credentials: "include"});
-  
-    const json = await response.json();
-    setBooks(json);
-  }
+        const response = await fetch(url, {credentials: "include"});
+    
+        const json = await response.json();
+        setBooks(json);
+    }
 
-  const getSession = async () =>{
-    const url = "http://localhost:3500/login/session";
+    const getSession = async () =>{
+        const url = "http://localhost:3500/login/session";
 
-    const response = await fetch(url, {credentials: "include"});
+        const response = await fetch(url, {credentials: "include"});
 
-    const json = await response.json();
-    setUser(json.user);
-    return json.user;
-  }
+        const json = await response.json();
+        setUser(json.user);
+        return json.user;
+    }
 
     const validateUser = async() => {
         const usuario = await getSession();
@@ -40,12 +44,31 @@ function ListarExemplar() {
     useEffect(() => {
         validateUser();
         getLivros();
+        getEditarExemplar();
     }, []);
+
+    const getEditarExemplar = () =>{
+        const livro = params.get('livro');
+        const estado = params.get('estado');
+
+        getExemplar(livro, estado);
+    }
+
+    const getExemplar = async (livro, estado) => {
+        const url = `http://localhost:3500/exemplar/unico/?livroId=${livro}&estado=${estado}`;
+
+        const response = await fetch(url, {credentials: "include"});
+    
+        const json = await response.json();
+
+        setLivroSelecionado(json.livroId);
+        setEstadoSelecionado(json.estado);
+        setPreco(json.preco);
+        setQuantidade(json.quantidade);
+    }
 
     const handleSalvar = (e) =>{
         e.preventDefault();
-
-        console.log(livroSelecionado, estadoSelecionado, quantidade, preco)
 
         const url = `http://localhost:3500/exemplar`;
 
@@ -71,6 +94,7 @@ function ListarExemplar() {
 
             alert("Exemplar salvo com sucesso!");
         });
+        clear();
     }
 
     const clear = () =>{
