@@ -105,7 +105,7 @@ function ListagemLivros() {
                 </button>
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
-                    <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
+                    <Link to={`/ListarExemplar/?livro=${book.id}`} className="opcoes">Visualizar Exemplares</Link>
                     {user?.role === "admin" && (
                       <>
                         <Link to={`/CadastroLivro/?livro=${book.id}`} className="opcoes">

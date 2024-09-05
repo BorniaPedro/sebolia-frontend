@@ -1,13 +1,22 @@
 import React, {useState, useEffect} from "react";
 import "../styles/listagemLivros.css";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 function ListarExemplar() {
   const [exemplares, setExemplares] = useState([]);
   const [user, setUser] = useState(null);
 
+  const location = useLocation();
+  const param = location.search.split("=");
+
   const getExemplares = async () => {
-    const url = "http://localhost:3500/exemplar";
+    let livro;
+    if(param && param[0] === "?livro"){
+      livro = param[1];
+    }
+
+    const url = `http://localhost:3500/exemplar/?livroId=${livro}`;
 
     const response = await fetch(url, {credentials: "include"});
   
