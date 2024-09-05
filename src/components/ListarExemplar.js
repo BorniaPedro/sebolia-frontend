@@ -60,7 +60,7 @@ function ListarExemplar() {
 
 
   useEffect(() => {
-    //validateUser();
+    validateUser();
     getExemplares();
     
     document.addEventListener("mousedown", handleClickOutside);
@@ -69,11 +69,29 @@ function ListarExemplar() {
     };
   }, []);
 
+  const removerExemplar = async (livroId, estado) =>{
+    const url = `http://localhost:3500/exemplar/?livroId=${livroId}&estado=${estado}`;
+
+    fetch(url, {
+        method: "Delete",
+        credentials: "include"
+    })
+    .then(async (response) => {
+        if(!response.ok){
+            const body = await response.json();
+            alert(body.message);
+            return;
+        }
+
+        getExemplares();
+    });
+  }
+
   return (
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Exemplares</h2>
-          <Link to="/CadastroLivro" className="cadastro-livro">
+          <Link to="/CadastroExemplar" className="cadastro-livro">
             Cadastrar Exemplares
           </Link>
         
@@ -81,7 +99,7 @@ function ListarExemplar() {
       <table className="livro-table">
         <tbody>
           {exemplares.map((ex) => (
-            <tr key={ex.livroId+ex.estadoConservacao} className="livro-container">
+            <tr key={ex.livroId+ex.estado} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
                 <div className="livro-info">
@@ -94,6 +112,13 @@ function ListarExemplar() {
                 {showOptions[`${ex.livroId} - ${ex.estado}`] && (
                   <div className="opcoes-menu">
                     <Link to="/Comprar" className="opcoes">Comprar</Link>
+                    {user?.role === "admin" && (
+                    <>
+                      <div onClick={() => removerExemplar(ex.livroId, ex.estado)} className="opcoes">
+                        Remover Exemplar
+                      </div>
+                    </>
+                  )}
                   </div>
                 )}
               </td>
