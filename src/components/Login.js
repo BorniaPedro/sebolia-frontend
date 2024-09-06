@@ -32,6 +32,7 @@ function Login() {
         return;
       }
       alert("Login efetuado com sucesso");
+      window.location.href = "http://localhost:3000";
     });
   }
 
