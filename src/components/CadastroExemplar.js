@@ -51,6 +51,9 @@ function ListarExemplar() {
         const livro = params.get('livro');
         const estado = params.get('estado');
 
+        if(!livro || !estado){
+            return;
+        }
         getExemplar(livro, estado);
     }
 
