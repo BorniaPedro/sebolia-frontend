@@ -1,5 +1,4 @@
 import React from "react";
-import SocialLogin from "./InputField";
 import "../styles/login.css";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
@@ -11,7 +10,7 @@ function Login() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-
+    
     const url = "http://localhost:3500/login";
 
     fetch(url, {
@@ -55,4 +54,6 @@ function Login() {
   )
 }
 
+
 export default Login;
+

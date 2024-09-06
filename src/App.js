@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import CadastroLivro from "./components/CadastroLivro";
 import CriarConta from "./components/CriarConta";
 import ListagemLivros from "./components/ListagemLivros";
+import ListarExemplar from "./components/ListarExemplar";
+import CadastroExemplar from "./components/CadastroExemplar";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/CadastroLivro" element={<CadastroLivro />} />
         <Route path="/ListagemLivros" element={<ListagemLivros />} />
         <Route path="/CriarConta" element={<CriarConta />} />
+        <Route path="/ListarExemplar" element={<ListarExemplar/>} />
+        <Route path="/CadastroExemplar" element={<CadastroExemplar/>} />
       </Routes>
     </div>
   );
