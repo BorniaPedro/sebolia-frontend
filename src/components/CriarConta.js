@@ -28,7 +28,6 @@ function CriarConta() {
         .then(async(response) => {
             if(!response.ok){
                 const body = await response.json();
-                console.log(body);
                 alert(body.message);
                 return;
             }
