@@ -1,5 +1,4 @@
 import React from "react";
-import SocialLogin from "./InputField";
 import "../styles/login.css";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
@@ -11,7 +10,7 @@ function Login() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    // console.log(usuario, senha)
+    
     const url = "http://localhost:3500/login";
 
     fetch(url, {
@@ -28,11 +27,11 @@ function Login() {
     .then(async(response) => {
       if(!response.ok){
         const body = await response.json();
-        console.log(body);
         alert(body.message);
         return;
       }
       alert("Login efetuado com sucesso");
+      window.location.href = "http://localhost:3000";
     });
   }
 
@@ -55,4 +54,6 @@ function Login() {
   )
 }
 
+
 export default Login;
+
