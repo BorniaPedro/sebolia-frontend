@@ -49,6 +49,24 @@ function ListagemLivros() {
     }
   }
 
+  const removerLivro = async (id) =>{
+    const url = `http://localhost:3500/livro/${id}`;
+
+    fetch(url, {
+        method: "Delete",
+        credentials: "include"
+    })
+    .then(async (response) => {
+        if(!response.ok){
+            const body = await response.json();
+            alert(body.message);
+            return;
+        }
+
+        getLivros();
+    });
+  }
+
   useEffect(() => {
     validateUser();
     getLivros();
@@ -88,9 +106,16 @@ function ListagemLivros() {
                 {showOptions[book.id] && (
                   <div className="opcoes-menu">
                     <Link to="/Exemplares" className="opcoes">Visualizar Exemplares</Link>
-                      {user?.role === "admin" &&
-                     <Link to={`/CadastroLivro/?livro=${book.id}`} className="opcoes">Editar Livro</Link>
-                    }
+                    {user?.role === "admin" && (
+                      <>
+                        <Link to={`/CadastroLivro/?livro=${book.id}`} className="opcoes">
+                          Editar Livro
+                        </Link>
+                        <div onClick={() => removerLivro(book.id)} className="opcoes">
+                          Remover Livro
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
               </td>
