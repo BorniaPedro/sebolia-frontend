@@ -1,18 +1,26 @@
 import React, {useState, useEffect} from "react";
 import "../styles/listagemLivros.css";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 function ListarExemplar() {
   const [exemplares, setExemplares] = useState([]);
   const [user, setUser] = useState(null);
 
+  const location = useLocation();
+  const param = location.search.split("=");
+
   const getExemplares = async () => {
-    const url = "http://localhost:3500/exemplar";
+    let livro;
+    if(param && param[0] === "?livro"){
+      livro = param[1];
+    }
+
+    const url = `http://localhost:3500/exemplar/?livroId=${livro}`;
 
     const response = await fetch(url, {credentials: "include"});
   
     const json = await response.json();
-    console.log(json)
     setExemplares(json);
   }
 
@@ -51,7 +59,7 @@ function ListarExemplar() {
 
 
   useEffect(() => {
-    //validateUser();
+    validateUser();
     getExemplares();
     
     document.addEventListener("mousedown", handleClickOutside);
@@ -60,11 +68,29 @@ function ListarExemplar() {
     };
   }, []);
 
+  const removerExemplar = async (livroId, estado) =>{
+    const url = `http://localhost:3500/exemplar/?livroId=${livroId}&estado=${estado}`;
+
+    fetch(url, {
+        method: "Delete",
+        credentials: "include"
+    })
+    .then(async (response) => {
+        if(!response.ok){
+            const body = await response.json();
+            alert(body.message);
+            return;
+        }
+
+        getExemplares();
+    });
+  }
+
   return (
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Exemplares</h2>
-          <Link to="/CadastroLivro" className="cadastro-livro">
+          <Link to="/CadastroExemplar" className="cadastro-livro">
             Cadastrar Exemplares
           </Link>
         
@@ -72,7 +98,7 @@ function ListarExemplar() {
       <table className="livro-table">
         <tbody>
           {exemplares.map((ex) => (
-            <tr key={ex.livroId+ex.estadoConservacao} className="livro-container">
+            <tr key={ex.livroId + ex.estado} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
                 <div className="livro-info">
@@ -85,6 +111,16 @@ function ListarExemplar() {
                 {showOptions[`${ex.livroId} - ${ex.estado}`] && (
                   <div className="opcoes-menu">
                     <Link to="/Comprar" className="opcoes">Comprar</Link>
+                    {user?.role === "admin" && (
+                    <>
+                      <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">
+                          Editar Exemplar
+                      </Link>
+                      <div onClick={() => removerExemplar(ex.livroId, ex.estado)} className="opcoes">
+                        Remover Exemplar
+                      </div>
+                    </>
+                  )}
                   </div>
                 )}
               </td>
