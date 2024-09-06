@@ -10,6 +10,7 @@ function Login() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    
     const url = "http://localhost:3500/login";
 
     fetch(url, {
@@ -30,6 +31,7 @@ function Login() {
         return;
       }
       alert("Login efetuado com sucesso");
+      window.location.href = "http://localhost:3000";
     });
   }
 
