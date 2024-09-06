@@ -5,13 +5,10 @@ import Login from "./components/Login";
 import CadastroLivro from "./components/CadastroLivro";
 import CriarConta from "./components/CriarConta";
 import ListagemLivros from "./components/ListagemLivros";
-import NavBar from './components/NavBar';
-import "./styles/NavBar.css";
 
 function App() {
   return (
     <div className="app-container">
-      <NavBar />
       <Routes> 
         <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
