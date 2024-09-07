@@ -110,7 +110,7 @@ function ListarExemplar() {
                 </button>
                 {showOptions[`${ex.livroId} - ${ex.estado}`] && (
                   <div className="opcoes-menu">
-                    <Link to="/Comprar" className="opcoes">Comprar</Link>
+                    <Link to={`/VendaLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Comprar</Link>
                     {user?.role === "admin" && (
                     <>
                       <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">
