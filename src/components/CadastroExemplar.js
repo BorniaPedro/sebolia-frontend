@@ -98,6 +98,7 @@ function ListarExemplar() {
             alert("Exemplar salvo com sucesso!");
         });
         clear();
+        window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
     }
 
     const clear = () =>{
