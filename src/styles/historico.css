@@ -1,0 +1,53 @@
+.historico-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    background: #FFFFFF;
+    border-radius: 1rem;
+    margin-top: 60px;
+}
+
+.historico-titulo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.historico-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.historico-info{
+    position: relative;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 0.3rem;
+}
+
+.historico-livroTitulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.historico-livroInfo {
+    display: flex;
+    gap: 2rem;
+    align-items: center;  
+    position: relative;
+}
