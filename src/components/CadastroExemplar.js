@@ -54,6 +54,7 @@ function ListarExemplar() {
         if(livro && estado){
             getExemplar(livro, estado);
         }
+
     }
 
     const getExemplar = async (livro, estado) => {
