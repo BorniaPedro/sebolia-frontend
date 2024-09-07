@@ -54,7 +54,7 @@ function VendaLivro() {
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        const url = `http://localhost:3500/compra`;
+        const url = `http://localhost:3500/venda`;
 
         fetch(url, {
             method: "POST",
@@ -74,7 +74,8 @@ function VendaLivro() {
                 return;
             }
 
-            alert("Compra realizada com sucesso!");
+            alert("Venda realizada com sucesso!");
+            window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
         });
     }
 
