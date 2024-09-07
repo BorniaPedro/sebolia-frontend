@@ -1,0 +1,74 @@
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    background: #FFFFFF;
+    border-radius: 1rem;
+    margin-top: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-titulo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 35px;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid #4e86c2;
+    padding: 0 1.25rem 0 0.6rem;
+    background-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-button {
+    width: 85%;
+    height: 54px;
+    background: #4e86c2;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #21527a;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.perfil-button:hover {
+    background: #21527a;
+}
+
+.saldo-button {
+    width: 76%;
+    height: 54px;
+    background: #4e86c2;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #21527a;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-top: 1rem;
+}
+
+.saldo-button:hover {
+    background: #21527a;
+}

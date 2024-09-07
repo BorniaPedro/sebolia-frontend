@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import CadastroLivro from "./components/CadastroLivro";
 import CriarConta from "./components/CriarConta";
 import ListagemLivros from "./components/ListagemLivros";
+import Perfil from "./components/Perfil";
 import NavBar from './components/NavBar';
 import "./styles/NavBar.css";
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/CadastroLivro" element={<CadastroLivro />} />
         <Route path="/ListagemLivros" element={<ListagemLivros />} />
+        <Route path="/Perfil" element={<Perfil />} />
         <Route path="/CriarConta" element={<CriarConta />} />
       </Routes>
     </div>
