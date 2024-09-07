@@ -20,8 +20,8 @@ function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: usuario,
-        password: senha
+        usuario: usuario,
+        senha: senha
       })
     })
     .then(async(response) => {

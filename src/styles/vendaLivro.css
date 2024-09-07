@@ -1,0 +1,82 @@
+.vendaLivro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    background: #FFFFFF;
+    border-radius: 1rem;
+    margin-top: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vendaLivro-header {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #333333;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    width: 100%;
+    text-align: center;
+}
+
+.vendaLivro-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.vendaInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 35px;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid #4e86c2;
+}
+
+input[type="text"] {
+    padding: 0 1.25rem 0 0.6rem;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    padding: 0 1.25rem 0 0.8rem;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.vendaLivro-button {
+    margin-top: 1.8rem;
+    width: 85%;
+    height: 54px;
+    background: #4e86c2;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #21527a;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.vendaLivro-button:hover {
+    background: #21527a;
+}

@@ -7,6 +7,7 @@ import CriarConta from "./components/CriarConta";
 import ListagemLivros from "./components/ListagemLivros";
 import ListarExemplar from "./components/ListarExemplar";
 import CadastroExemplar from "./components/CadastroExemplar";
+import VendaLivro from "./components/VendaLivro";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/CriarConta" element={<CriarConta />} />
         <Route path="/ListarExemplar" element={<ListarExemplar/>} />
         <Route path="/CadastroExemplar" element={<CadastroExemplar/>} />
+        <Route path="/VendaLivro" element={<VendaLivro />} />
       </Routes>
     </div>
   );

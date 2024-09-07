@@ -51,10 +51,10 @@ function ListarExemplar() {
         const livro = params.get('livro');
         const estado = params.get('estado');
 
-        if(!livro || !estado){
-            return;
+        if(livro && estado){
+            getExemplar(livro, estado);
         }
-        getExemplar(livro, estado);
+
     }
 
     const getExemplar = async (livro, estado) => {
