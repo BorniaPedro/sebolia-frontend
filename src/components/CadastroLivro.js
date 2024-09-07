@@ -98,6 +98,7 @@ function CadastroLivro() {
 
             alert("Livro salvo com sucesso!");
             clear();
+            window.location.href = "http://localhost:3000/ListagemLivros";
         });
         
     };
