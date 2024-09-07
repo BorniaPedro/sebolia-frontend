@@ -72,3 +72,21 @@
 .saldo-button:hover {
     background: #21527a;
 }
+
+.excluir-button {
+    width: 76%;
+    height: 54px;
+    background: #ff0000;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #800000;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-top: 1rem;
+}
+
+.excluir-button:hover {
+    background: #800000;
+}

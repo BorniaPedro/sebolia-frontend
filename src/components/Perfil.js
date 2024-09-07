@@ -19,12 +19,12 @@ function Perfil() {
                 />
                 <input 
                     type="password" 
-                    placeholder="Senha Atual" 
+                    placeholder="Nova Senha" 
                     className="perfil-info" 
                 />
                 <input 
                     type="password" 
-                    placeholder="Nova Senha" 
+                    placeholder="Senha Atual" 
                     className="perfil-info" 
                 />
                 <button className="perfil-button">
@@ -35,7 +35,11 @@ function Perfil() {
             </form>
 
             <button className="saldo-button">
-                    Adicionar saldo
+                Adicionar saldo
+            </button>
+
+            <button className="excluir-button">
+                Excluir conta
             </button>
 
         </div>
