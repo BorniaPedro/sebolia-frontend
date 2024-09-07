@@ -96,9 +96,9 @@ function ListagemLivros() {
               <td colSpan="5">
                 <div className="livro-titulo">{book.titulo}</div>
                 <div className="livro-info">
-                  <span className="livro-autor">{book.autor}</span>
-                  <span className="livro-editora">{book.editora}</span>
-                  <span className="livro-ano">{book.ano}</span>
+                  <span className="livro-autor">Autor: {book.autor}</span>
+                  <span className="livro-editora">Editora: {book.editora}</span>
+                  <span className="livro-ano">Ano de Lançamento: {book.ano}</span>
                 </div>
                 <button className="livro-editar" onClick={() => toggleOptions(book.id)}>
                   <span className="material-symbols-outlined">more_vert</span>
