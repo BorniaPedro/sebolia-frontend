@@ -8,6 +8,7 @@ import ListagemLivros from "./components/ListagemLivros";
 import ListarExemplar from "./components/ListarExemplar";
 import CadastroExemplar from "./components/CadastroExemplar";
 import VendaLivro from "./components/VendaLivro";
+import CompraLivro from "./components/CompraLivro";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/ListarExemplar" element={<ListarExemplar/>} />
         <Route path="/CadastroExemplar" element={<CadastroExemplar/>} />
         <Route path="/VendaLivro" element={<VendaLivro />} />
+        <Route path="/CompraLivro" element={<CompraLivro />} />
       </Routes>
     </div>
   );
