@@ -54,7 +54,7 @@ function VendaLivro() {
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        const url = `http://localhost:3500/compra`;
+        const url = `http://localhost:3500/venda`;
 
         fetch(url, {
             method: "POST",
@@ -74,7 +74,8 @@ function VendaLivro() {
                 return;
             }
 
-            alert("Compra realizada com sucesso!");
+            alert("Venda realizada com sucesso!");
+            window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
         });
     }
 
@@ -85,11 +86,11 @@ function VendaLivro() {
             </div>
             <form className="vendaLivro-form">
                 <p>Livro</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo}/>
+                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo} disabled/>
                 <p>Estado de conservação</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={estado}/>
+                <input type="text" className="vendaInfo" readOnly defaultValue={estado} disabled/>
                 <p>Preço</p>
-                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly/>
+                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly disabled/>
                 <button className="vendaLivro-button" onClick={handleSubmit}>Vender Livro</button>
             </form>
         </div>
