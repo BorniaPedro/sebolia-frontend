@@ -90,10 +90,9 @@ function ListarExemplar() {
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Exemplares</h2>
-          <Link to="/CadastroExemplar" className="cadastro-livro">
+          <Link to="/CadastroExemplar" className="cadastro-exemplar">
             Cadastrar Exemplares
           </Link>
-        
       </div>
       <table className="livro-table">
         <tbody>
