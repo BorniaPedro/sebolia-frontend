@@ -1,0 +1,67 @@
+/*Estilos*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EEEEEE;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: #FFFFFF;
+  border-radius: 1rem;
+  margin-top: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-dashboard {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+p{
+  font-weight: 400;
+}
+
+.botoes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.botao {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: #4e86c2;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.botao:hover {
+  background-color: #0c67c9;
+}
