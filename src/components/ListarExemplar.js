@@ -90,10 +90,9 @@ function ListarExemplar() {
     <div className="listagem-container">
       <div className="header">
         <h2 className="titulo">Listagem de Exemplares</h2>
-          <Link to="/CadastroExemplar" className="cadastro-livro">
+          <Link to="/CadastroExemplar" className="cadastro-exemplar">
             Cadastrar Exemplares
           </Link>
-        
       </div>
       <table className="livro-table">
         <tbody>
@@ -110,7 +109,8 @@ function ListarExemplar() {
                 </button>
                 {showOptions[`${ex.livroId} - ${ex.estado}`] && (
                   <div className="opcoes-menu">
-                    <Link to={`/VendaLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Comprar</Link>
+                    <Link to={`/VendaLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Vender</Link>
+                    <Link to={`/CompraLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Comprar</Link>
                     {user?.role === "admin" && (
                     <>
                       <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">

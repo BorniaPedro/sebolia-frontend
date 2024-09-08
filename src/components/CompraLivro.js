@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/vendaLivro.css"
 
-function VendaLivro() {
+function CompraLivro() {
 
     const [livro, setLivro] = useState('');
     const [estado, setEstado] = useState('');
@@ -54,7 +54,7 @@ function VendaLivro() {
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        const url = `http://localhost:3500/venda`;
+        const url = `http://localhost:3500/compra`;
 
         fetch(url, {
             method: "POST",
@@ -74,7 +74,7 @@ function VendaLivro() {
                 return;
             }
 
-            alert("Venda realizada com sucesso!");
+            alert("Compra realizada com sucesso!");
             window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
         });
     }
@@ -82,19 +82,19 @@ function VendaLivro() {
     return (
         <div className="vendaLivro-container">
             <div className="vendaLivro-header">
-                <h2>Venda de Livro</h2>
+                <h2>Compra de Livro</h2>
             </div>
             <form className="vendaLivro-form">
                 <p>Livro</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo} disabled/>
+                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo}/>
                 <p>Estado de conservação</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={estado} disabled/>
+                <input type="text" className="vendaInfo" readOnly defaultValue={estado}/>
                 <p>Preço</p>
-                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly disabled/>
-                <button className="vendaLivro-button" onClick={handleSubmit}>Vender Livro</button>
+                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly/>
+                <button className="vendaLivro-button" onClick={handleSubmit}>Comprar Livro</button>
             </form>
         </div>
     );
 }
 
-export default VendaLivro;
+export default CompraLivro;

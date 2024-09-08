@@ -9,6 +9,7 @@ import ListarExemplar from "./components/ListarExemplar";
 import CadastroExemplar from "./components/CadastroExemplar";
 import VendaLivro from "./components/VendaLivro";
 import Historico from "./components/Historico";
+import CompraLivro from "./components/CompraLivro";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/CadastroExemplar" element={<CadastroExemplar/>} />
         <Route path="/VendaLivro" element={<VendaLivro />} />
         <Route path="/Historico" element={<Historico />} />
+        <Route path="/CompraLivro" element={<CompraLivro />} />
       </Routes>
     </div>
   );
