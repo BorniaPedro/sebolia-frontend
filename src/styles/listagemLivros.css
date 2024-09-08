@@ -63,6 +63,20 @@ body {
   transition: 0.3s ease;
 }
 
+.cadastro-exemplar {
+  background-color: #2b39d6;
+  color: #FFFFFF;
+  padding: 0.5rem 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  transition: 0.3s ease;
+  font-size: 0.9rem;
+}
+
 .cadastro-livro:hover {
   background-color: #1a2a96;
 }
