@@ -51,3 +51,11 @@
     align-items: center;  
     position: relative;
 }
+
+.vermelho span{
+    color: #F52525;
+}
+
+.verde span{
+    color: #21cf27;
+}
