@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/perfil.css";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 function Perfil() {
-    // Estados para controlar a exibição das modais
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
     const [isAddBalanceModalOpen, setIsAddBalanceModalOpen] = useState(false);
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
@@ -52,11 +52,18 @@ function Perfil() {
         .then(async (response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
 
-            alert("Perfil atualizado com sucesso!");
+        });
+
+        Swal.fire({
+           title: "Perfil atualizado com sucesso!",
+           icon: "success",
         });
         
     };
