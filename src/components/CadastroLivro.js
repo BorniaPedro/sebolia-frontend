@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/cadastroLivro.css";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
 
 function CadastroLivro() {
     const [id, setId] = useState("");
@@ -15,12 +17,12 @@ function CadastroLivro() {
     const validateUser = async() => {
         const usuario = await getSession();
         if(usuario?.role !== "admin"){
-          Swal.fire({
-            title: "É necessário ser administrador para acessar essa tela",
-            icon: "error",
-          }).then(() =>{
-            window.location.href = "http://localhost:3000/Login";
-          });
+            Swal.fire({
+                title: "É necessário ser administrador para acessar essa tela",
+                icon: "error",
+             }).then(() =>{
+                 window.location.href = "http://localhost:3000/Login";
+             });
         }
       }
 
@@ -104,12 +106,12 @@ function CadastroLivro() {
             }
 
             Swal.fire({
-                title: "Livro salvo com sucesso!",
+               title: "Perfil atualizado com sucesso!",
                 icon: "success",
-             }).then(() =>{
-                 clear();
-                 window.location.href = "http://localhost:3000/ListagemLivros";
-             });
+            }).then(() => {
+                clear();
+                window.location.href = "http://localhost:3000/ListagemLivros";
+            });
         });
         
     };
@@ -119,6 +121,7 @@ function CadastroLivro() {
             <h2 className="form-title">Cadastro de Livro</h2>
 
             <form className="cadastroLivro-form">
+                <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>
                 <input
                     type="text"
                     placeholder="Nome do Livro"

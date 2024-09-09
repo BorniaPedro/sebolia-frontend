@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/cadastroExemplar.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from "react-router-dom";
 
 function ListarExemplar() {
 
@@ -36,7 +38,7 @@ function ListarExemplar() {
 
     const validateUser = async() => {
         const usuario = await getSession();
-        if(!usuario){
+        if(usuario?.role !== "admin"){
           Swal.fire({
             title: "É necessário ser administrador para acessar essa tela",
             icon: "error",
@@ -102,7 +104,7 @@ function ListarExemplar() {
                  });
                 return;
             }
-            
+
             Swal.fire({
                 title: "Exemplar salvo com sucesso!",
                 icon: "success",
@@ -110,6 +112,7 @@ function ListarExemplar() {
                 clear();
                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
             }));
+
         });
     }
 
@@ -123,6 +126,7 @@ function ListarExemplar() {
     return (
         <div className="cadastroExemplar-container">
             <div className="cadastroExemplar-header">
+                <Link to={livroSelecionado ? `/ListarExemplar/?livro=${livroSelecionado}` : "/ListagemLivros"} className="voltar-button">Voltar</Link>
                 <h2>Cadastro<br/> de exemplar</h2>
             </div>
             <form className="cadastroExemplar-form">
