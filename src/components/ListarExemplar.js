@@ -52,8 +52,12 @@ function ListarExemplar() {
   const validateUser = async() => {
     const usuario = await getSession();
     if(!usuario){
-      alert("É necessário estar logado para acessar essa tela");
-      window.location.href = "http://localhost:3000/Login";
+      Swal.fire({
+        title: "É necessário estar logado para acessar essa tela",
+        icon: "error",
+      }).then(() =>{
+        window.location.href = "http://localhost:3000/Login";
+      });
     }
   }
 
@@ -76,11 +80,14 @@ function ListarExemplar() {
         credentials: "include"
     })
     .then(async (response) => {
-        if(!response.ok){
-            const body = await response.json();
-            alert(body.message);
-            return;
-        }
+      if(!response.ok){
+        const body = await response.json();
+        Swal.fire({
+            title: `${body.message}`,
+            icon: "error",
+         });
+        return;
+    }
 
         getExemplares();
     });

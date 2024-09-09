@@ -15,10 +15,14 @@ function CadastroLivro() {
     const validateUser = async() => {
         const usuario = await getSession();
         if(usuario?.role !== "admin"){
-          alert("É necessário ser administrador para acessar essa tela");
-          window.location.href = "http://localhost:3000/Login";
+          Swal.fire({
+            title: "É necessário ser administrador para acessar essa tela",
+            icon: "error",
+          }).then(() =>{
+            window.location.href = "http://localhost:3000/Login";
+          });
         }
-    }
+      }
 
     const getSession = async () =>{
         const url = "http://localhost:3500/login/session";
@@ -92,13 +96,20 @@ function CadastroLivro() {
         .then(async (response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
 
-            alert("Livro salvo com sucesso!");
-            clear();
-            window.location.href = "http://localhost:3000/ListagemLivros";
+            Swal.fire({
+                title: "Livro salvo com sucesso!",
+                icon: "success",
+             }).then(() =>{
+                 clear();
+                 window.location.href = "http://localhost:3000/ListagemLivros";
+             });
         });
         
     };

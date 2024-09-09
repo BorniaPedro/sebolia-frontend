@@ -28,10 +28,17 @@ function CriarConta() {
         .then(async(response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
-            alert("Usuário cadastrado com sucesso");
+
+            Swal.fire({
+                title: "Usuário cadastrado com sucesso",
+                icon: "success",
+             });
         });
     };
     
