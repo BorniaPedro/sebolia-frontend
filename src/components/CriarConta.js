@@ -42,6 +42,8 @@ function CriarConta() {
             Swal.fire({
                 title: "Usuário cadastrado com sucesso",
                 icon: "success",
+             }).then(() =>{
+                window.location.href = "http://localhost:3000/Login";
              });
         });
     };
