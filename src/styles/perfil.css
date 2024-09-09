@@ -90,3 +90,8 @@
 .excluir-button:hover {
     background: #800000;
 }
+
+.perfil-header {
+    display: flex; 
+    flex-direction: row;
+}
