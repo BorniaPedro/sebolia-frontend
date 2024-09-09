@@ -56,17 +56,19 @@ function Perfil() {
                 </button>
             </form>
 
-            <button className="saldo-button" onClick={openPasswordModal}>
-                Alterar Senha
-            </button>
+            <div className="button-container">
+                <button className="senha-button" onClick={openPasswordModal}>
+                    Alterar Senha
+                </button>
 
-            <button className="saldo-button" onClick={openAddBalanceModal}>
-                Adicionar saldo
-            </button>
+                <button className="saldo-button" onClick={openAddBalanceModal}>
+                    Adicionar saldo
+                </button>
 
-            <button className="excluir-button" onClick={openDeleteAccountModal}>
-                Excluir conta
-            </button>
+                <button className="excluir-button" onClick={openDeleteAccountModal}>
+                    Excluir conta
+                </button>
+            </div>
 
             {/* Modal para alterar senha */}
             {isPasswordModalOpen && (
@@ -114,13 +116,13 @@ function Perfil() {
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Excluir Conta</h3>
-                        <p>Para confirmar a exclusão, digite sua senha:</p>
+                        <p className="excluir-content">Para confirmar a exclusão, digite sua senha:</p>
                         <input
                             type="password"
                             placeholder="Senha"
                             className="perfil-info"
                         />
-                        <button className="excluir-button">Excluir Conta</button>
+                        <button className="excluirConta-button">Excluir Conta</button>
                         <button className="close-button" onClick={closeDeleteAccountModal}>
                             Fechar
                         </button>

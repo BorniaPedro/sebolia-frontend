@@ -26,16 +26,17 @@
     border-radius: 0.5rem;
     color: #FFFFFF;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     position: absolute;
-    top: 10%;
+    top: 10px; 
+    left: 10px;
     text-decoration: none;
     outline: none;
     box-shadow: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.3rem 0.3rem;
+    padding: 0.5rem 1rem;
 }
 
 .voltar-button:hover {
@@ -72,7 +73,7 @@
 }
 
 .perfil-button {
-    width: 85%;
+    width: 90%;
     height: 54px;
     background: #4e86c2;
     color: #FFFFFF;
@@ -88,8 +89,15 @@
     background: #21527a;
 }
 
-.saldo-button {
-    width: 76%;
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 91%;
+}
+
+.saldo-button, .senha-button {
+    width: 43%;
     height: 54px;
     background: #4e86c2;
     color: #FFFFFF;
@@ -102,12 +110,20 @@
     margin-top: 1rem;
 }
 
-.saldo-button:hover {
+.saldo-button{
+    margin-right: 5%;
+}
+
+.senha-button {
+    margin-left: 5%;
+}
+
+.saldo-button:hover, .senha-button:hover {
     background: #21527a;
 }
 
 .excluir-button {
-    width: 76%;
+    width: 90%;
     height: 54px;
     background: #ff0000;
     color: #FFFFFF;
@@ -118,13 +134,12 @@
     cursor: pointer;
     transition: 0.2s ease;
     margin-top: 1rem;
+    margin-left: 5%;
 }
 
 .excluir-button:hover {
     background: #800000;
 }
-
-
 
 .modal {
     position: fixed;
@@ -144,6 +159,14 @@
     border-radius: 5px;
     width: 300px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .close-button {
@@ -151,10 +174,38 @@
     background-color: #f44336;
     color: white;
     border: none;
+    border-radius: 0.5rem;
     padding: 10px;
     cursor: pointer;
 }
 
 .close-button:hover {
     background-color: #d32f2f;
+}
+
+.excluirConta-button {
+    width: 90%;
+    height: 54px;
+    background: #ff0000;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #800000;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.excluirConta-button:hover {
+    background: #800000;
+}
+
+.excluir-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    align-items: center;
+    width: 90%;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
