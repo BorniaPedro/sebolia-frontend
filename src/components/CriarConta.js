@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/login.css"
 import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
+
 
 
 function CriarConta() {
@@ -36,7 +38,7 @@ function CriarConta() {
                  });
                 return;
             }
-
+            
             Swal.fire({
                 title: "Usuário cadastrado com sucesso",
                 icon: "success",
@@ -79,6 +81,9 @@ function CriarConta() {
                 />
 
                 <button onClick={handleSubmit} className="login-button">Criar Conta</button>
+                <Link to="/Login" className="create-account">
+                    Já possui uma conta?
+                </Link>
             </form>
         </div>
     )

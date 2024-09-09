@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/historico.css"
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 function Historico() {
     const [transactions, setTransactions] = useState([]);
@@ -27,8 +27,12 @@ function Historico() {
     const validateUser = async() => {
       const usuario = await getSession();
       if(!usuario){
-        alert("É necessário estar logado para acessar essa tela");
-        window.location.href = "http://localhost:3000/Login";
+        Swal.fire({
+          title: "É necessário estar logado para acessar essa tela",
+          icon: "error",
+        }).then(() =>{
+          window.location.href = "http://localhost:3000/Login";
+        });
       }
     }
   
