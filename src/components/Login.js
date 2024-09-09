@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/login.css";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 function Login() {
 
@@ -34,11 +35,11 @@ function Login() {
         return;
      }
      Swal.fire({
-      title: "Perfil atualizado com sucesso!",
+      title: "Login realizado com sucesso!",
       icon: "success",
-      }.then(() =>{
+      }).then(() =>{
         window.location.href = "http://localhost:3000";
-      }));
+      });
     });
   }
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styles/login.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+
 
 function CriarConta() {
     // const [nome, setNome] = useState("");

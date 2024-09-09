@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/vendaLivro.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
 
 function VendaLivro() {
 
