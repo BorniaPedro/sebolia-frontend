@@ -85,8 +85,8 @@ function ListagemLivros() {
 
   return (
     <div className="listagem-container">
-      <div className="header">
         <Link to="/" className="voltar-button">Voltar</Link>
+      <div className="header">
         <h2 className="titulo">Listagem de Livros</h2>
         {user?.role === "admin" &&
           <Link to="/CadastroLivro" className="cadastro-livro">

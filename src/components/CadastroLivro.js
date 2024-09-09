@@ -118,10 +118,10 @@ function CadastroLivro() {
 
     return (
         <div className="CadastroLivro-container">
+            <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>
             <h2 className="form-title">Cadastro de Livro</h2>
 
             <form className="cadastroLivro-form">
-                <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>
                 <input
                     type="text"
                     placeholder="Nome do Livro"
