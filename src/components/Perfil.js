@@ -24,14 +24,21 @@ function Perfil() {
         const response = await fetch(url, {credentials: "include"});
     
         const json = await response.json();
+
+        if(!json?.user){
+            return;
+        }
+        
         setUsuario(json.user.usuario);
         setTelefone(json.user.celular);
         
         return json.user;
-      }
-      useEffect(() =>{
+    }
+
+    useEffect(() =>{
         validateUser(); 
     }, []);
+    
 
     const handleAtualizarCadastro = async (e) => {
         e.preventDefault();
@@ -97,7 +104,7 @@ function Perfil() {
     return (
         <div className="perfil-container">
             <div className="perfil-header">   
-                <Link to="/dashboard" className="voltar-button">Voltar</Link>
+                <Link to="/" className="voltar-button">Voltar</Link>
                 <h2 className="perfil-titulo">Perfil</h2>
             </div>
 
