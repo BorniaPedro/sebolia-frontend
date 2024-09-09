@@ -96,8 +96,8 @@ function CompraLivro() {
 
     return (
         <div className="vendaLivro-container">
+            <Link to={`/ListarExemplar/?livro=${livro.livroId}`} className="voltar-button">Voltar</Link>
             <div className="vendaLivro-header">
-                <Link to={`/ListarExemplar/?livro=${livro.livroId}`} className="voltar-button">Voltar</Link>
                 <h2>Compra de Livro</h2>
             </div>
             <form className="vendaLivro-form">

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/historico.css"
+import { Link } from 'react-router-dom';
+
 
 function Historico() {
     const [transactions, setTransactions] = useState([]);
@@ -38,7 +40,12 @@ function Historico() {
 
     return(
         <div className="historico-container">
+          <Link to="/" className="voltar-button">Voltar</Link>
+          <div className="header">
             <h2 className="historico-titulo">Histórico do usuário</h2>
+          </div>
+            
+            
 
             <table className="historico-table">
                 <tbody>

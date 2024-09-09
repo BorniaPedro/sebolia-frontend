@@ -83,7 +83,7 @@ function VendaLivro() {
                 return;
             }
             Swal.fire({
-                title: "Perfil atualizado com sucesso!",
+                title: "Venda realizada com sucesso!",
                 icon: "success",
              }).then(() =>{
                  window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
@@ -94,8 +94,8 @@ function VendaLivro() {
 
     return (
         <div className="vendaLivro-container">
+            <Link to={`/ListarExemplar/?livro=${livro.livroId}`} className="voltar-button">Voltar</Link>
             <div className="vendaLivro-header">
-                <Link to={`/ListarExemplar/?livro=${livro.livroId}`} className="voltar-button">Voltar</Link>
                 <h2>Venda de Livro</h2>
             </div>
             <form className="vendaLivro-form">

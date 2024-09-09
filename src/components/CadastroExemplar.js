@@ -108,10 +108,10 @@ function ListarExemplar() {
             Swal.fire({
                 title: "Exemplar salvo com sucesso!",
                 icon: "success",
-            }.theb(() => {
+            }).then(() => {
                 clear();
                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
-            }));
+            });
 
         });
     }
@@ -125,8 +125,8 @@ function ListarExemplar() {
 
     return (
         <div className="cadastroExemplar-container">
+            <Link to={livroSelecionado ? `/ListarExemplar/?livro=${livroSelecionado}` : "/ListagemLivros"} className="voltar-button">Voltar</Link>
             <div className="cadastroExemplar-header">
-                <Link to={livroSelecionado ? `/ListarExemplar/?livro=${livroSelecionado}` : "/ListagemLivros"} className="voltar-button">Voltar</Link>
                 <h2>Cadastro<br/> de exemplar</h2>
             </div>
             <form className="cadastroExemplar-form">
