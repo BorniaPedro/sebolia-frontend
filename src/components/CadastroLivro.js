@@ -106,7 +106,7 @@ function CadastroLivro() {
             }
 
             Swal.fire({
-               title: "Perfil atualizado com sucesso!",
+               title: "Livro salvo com sucesso!",
                 icon: "success",
             }).then(() => {
                 clear();
