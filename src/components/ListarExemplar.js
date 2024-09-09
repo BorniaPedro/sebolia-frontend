@@ -89,7 +89,7 @@ function ListarExemplar() {
             title: `${body.message}`,
             icon: "error",
          });
-        }
+     }
 
         getExemplares();
     });

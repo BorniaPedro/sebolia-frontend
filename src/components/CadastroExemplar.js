@@ -35,11 +35,12 @@ function ListarExemplar() {
         return json.user;
     }
 
+
     const validateUser = async() => {
         const usuario = await getSession();
         if(usuario?.role !== "admin"){
           Swal.fire({
-            title: "É necessário estar logado para acessar essa tela",
+            title: "É necessário ser administrador para acessar essa tela",
             icon: "error",
           }).then(() =>{
             window.location.href = "http://localhost:3000/Login";
@@ -107,10 +108,11 @@ function ListarExemplar() {
             Swal.fire({
                 title: "Exemplar salvo com sucesso!",
                 icon: "success",
-            }).then(() => {
+            }.theb(() => {
                 clear();
                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
-            });
+            }));
+
         });
     }
 

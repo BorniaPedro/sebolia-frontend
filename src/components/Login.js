@@ -27,11 +27,18 @@ function Login() {
     .then(async(response) => {
       if(!response.ok){
         const body = await response.json();
-        alert(body.message);
+        Swal.fire({
+            title: `${body.message}`,
+            icon: "error",
+         });
         return;
-      }
-      alert("Login efetuado com sucesso");
-      window.location.href = "http://localhost:3000";
+     }
+     Swal.fire({
+      title: "Perfil atualizado com sucesso!",
+      icon: "success",
+      }.then(() =>{
+        window.location.href = "http://localhost:3000";
+      }));
     });
   }
 

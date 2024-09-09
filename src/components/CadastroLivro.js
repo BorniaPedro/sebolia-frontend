@@ -24,7 +24,7 @@ function CadastroLivro() {
                  window.location.href = "http://localhost:3000/Login";
              });
         }
-    }
+      }
 
     const getSession = async () =>{
         const url = "http://localhost:3500/login/session";
@@ -106,7 +106,7 @@ function CadastroLivro() {
             }
 
             Swal.fire({
-                title: "Perfil atualizado com sucesso!",
+               title: "Perfil atualizado com sucesso!",
                 icon: "success",
             }).then(() => {
                 clear();
