@@ -61,7 +61,7 @@ docker build -t sebolia-frontend .
 
 4. Rodar o container
 ```bash
-docker run -p 3000:3000 sebolia
+docker run -p 3000:3000 sebolia-frontend
 ```
 
 A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
