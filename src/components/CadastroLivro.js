@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/cadastroLivro.css";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
 
 function CadastroLivro() {
     const [id, setId] = useState("");
@@ -15,8 +17,12 @@ function CadastroLivro() {
     const validateUser = async() => {
         const usuario = await getSession();
         if(usuario?.role !== "admin"){
-          alert("É necessário ser administrador para acessar essa tela");
-          window.location.href = "http://localhost:3000/Login";
+            Swal.fire({
+                title: "É necessário ser administrador para acessar essa tela",
+                icon: "error",
+             }).then(() =>{
+                 window.location.href = "http://localhost:3000/Login";
+             });
         }
     }
 
@@ -92,13 +98,20 @@ function CadastroLivro() {
         .then(async (response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
 
-            alert("Livro salvo com sucesso!");
-            clear();
-            window.location.href = "http://localhost:3000/ListagemLivros";
+            Swal.fire({
+                title: "Perfil atualizado com sucesso!",
+                icon: "success",
+            }).then(() => {
+                clear();
+                window.location.href = "http://localhost:3000/ListagemLivros";
+            });
         });
         
     };
@@ -108,6 +121,7 @@ function CadastroLivro() {
             <h2 className="form-title">Cadastro de Livro</h2>
 
             <form className="cadastroLivro-form">
+                <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>
                 <input
                     type="text"
                     placeholder="Nome do Livro"
