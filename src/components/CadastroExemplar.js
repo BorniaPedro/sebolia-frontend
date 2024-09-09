@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/cadastroExemplar.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from "react-router-dom";
 
 function ListarExemplar() {
 
@@ -33,13 +35,18 @@ function ListarExemplar() {
         return json.user;
     }
 
+
     const validateUser = async() => {
         const usuario = await getSession();
         if(usuario?.role !== "admin"){
-          alert("É necessário ser administrador para acessar essa tela");
-          window.location.href = "http://localhost:3000/Login";
+          Swal.fire({
+            title: "É necessário ser administrador para acessar essa tela",
+            icon: "error",
+          }).then(() =>{
+            window.location.href = "http://localhost:3000/Login";
+          });
         }
-    }
+      }
 
     useEffect(() => {
         validateUser();
@@ -91,13 +98,21 @@ function ListarExemplar() {
         .then(async (response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
 
-            alert("Exemplar salvo com sucesso!");
-            clear();
-            window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
+            Swal.fire({
+                title: "Exemplar salvo com sucesso!",
+                icon: "success",
+            }.theb(() => {
+                clear();
+                window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livroSelecionado}`;
+            }));
+
         });
     }
 
@@ -111,6 +126,7 @@ function ListarExemplar() {
     return (
         <div className="cadastroExemplar-container">
             <div className="cadastroExemplar-header">
+                <Link to={livroSelecionado ? `/ListarExemplar/?livro=${livroSelecionado}` : "/ListagemLivros"} className="voltar-button">Voltar</Link>
                 <h2>Cadastro<br/> de exemplar</h2>
             </div>
             <form className="cadastroExemplar-form">
