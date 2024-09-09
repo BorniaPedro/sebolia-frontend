@@ -36,6 +36,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
   width: 100%;
   margin-bottom: 3rem;
   margin-top: 1rem;
@@ -157,4 +158,23 @@ body {
 
 .opcoes:hover {
   background-color: #1a2a96;
+}
+
+.voltar-button {
+  background: #4e86c2;
+  border: 1px solid #285f99;
+  border-radius: 0.5rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 10px; 
+  left: 10px;
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
 }

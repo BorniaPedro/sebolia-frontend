@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../styles/listagemLivros.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 function ListagemLivros() {
 
@@ -57,12 +58,14 @@ function ListagemLivros() {
         credentials: "include"
     })
     .then(async (response) => {
-        if(!response.ok){
-            const body = await response.json();
-            alert(body.message);
-            return;
-        }
-
+      if(!response.ok){
+        const body = await response.json();
+        Swal.fire({
+            title: `${body.message}`,
+            icon: "error",
+         });
+        return;
+      }
         getLivros();
     });
   }
@@ -80,6 +83,7 @@ function ListagemLivros() {
   return (
     <div className="listagem-container">
       <div className="header">
+        <Link to="/" className="voltar-button">Voltar</Link>
         <h2 className="titulo">Listagem de Livros</h2>
         {user?.role === "admin" &&
           <Link to="/CadastroLivro" className="cadastro-livro">
