@@ -9,12 +9,45 @@
     border-radius: 1rem;
     margin-top: 60px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.perfil-header {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    position: relative;
+}
+
+.voltar-button {
+    background: #4e86c2;
+    border: 1px solid #285f99;
+    border-radius: 0.5rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    top: 10%;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem 0.3rem;
+}
+
+.voltar-button:hover {
+    background: #21527a;
 }
 
 .perfil-titulo {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
 }
 
 .perfil-form {
@@ -91,10 +124,7 @@
     background: #800000;
 }
 
-.perfil-header {
-    display: flex; 
-    flex-direction: row;
-}
+
 
 .modal {
     position: fixed;
