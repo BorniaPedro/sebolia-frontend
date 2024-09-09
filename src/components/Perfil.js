@@ -5,10 +5,8 @@ import { Link } from "react-router-dom";
 function Perfil() {
     return(
         <div className="perfil-container">
-            <div className="perfil-header">
-                <button className="home-button">
-                    <Link to="/dashboard">Home</Link>
-                </button>
+            <div className="perfil-header">   
+                <Link to="/dashboard" className="voltar-button">Voltar</Link>
                 <h2 className="perfil-titulo">Perfil</h2>
             </div>
 
