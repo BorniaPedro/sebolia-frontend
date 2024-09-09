@@ -1,10 +1,16 @@
 import React from "react";
 import "../styles/perfil.css"
+import { Link } from "react-router-dom";
 
 function Perfil() {
     return(
         <div className="perfil-container">
-            <h2 className="perfil-titulo">Perfil</h2>
+            <div className="perfil-header">
+                <button className="home-button">
+                    <Link to="/dashboard">Home</Link>
+                </button>
+                <h2 className="perfil-titulo">Perfil</h2>
+            </div>
 
             <form action="#" className="perfil-form">
                 <input 
