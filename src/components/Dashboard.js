@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 import '../styles/dashboard.css';
 
 function Dashboard() {
@@ -26,6 +27,38 @@ function Dashboard() {
     validateUser();
   }, []);
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    const url = "http://localhost:3500/logout";
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+          "Content-Type": "application/json",
+      },
+  })
+  .then(async (response) => {
+      if(!response.ok){
+          const body = await response.json();
+          Swal.fire({
+              title: `${body.message}`,
+              icon: "error",
+           });
+          return;
+      }
+
+      Swal.fire({
+          title: "Logout realizado com sucesso!",
+          icon: "success",
+       }).then(() => {
+        window.location.href = "http://localhost:3000/Login";
+       });
+
+  })
+  }
+
   return (
     <div className='dashboard-container'>
       <div className='titulo-dashboard'>
@@ -36,6 +69,7 @@ function Dashboard() {
         <Link to="/ListagemLivros" className='botao'>Listagem de livros</Link>
         <Link to="/Historico" className='botao'>Histórico</Link>
         <Link to="/Perfil" className='botao'>Perfil</Link>
+        <Link onClick={handleLogout} className='botao'>Logout</Link>
       </div>
     </div>
   );

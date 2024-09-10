@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/login.css";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 function Login() {
 
@@ -27,11 +28,18 @@ function Login() {
     .then(async(response) => {
       if(!response.ok){
         const body = await response.json();
-        alert(body.message);
+        Swal.fire({
+            title: `${body.message}`,
+            icon: "error",
+         });
         return;
-      }
-      alert("Login efetuado com sucesso");
-      window.location.href = "http://localhost:3000";
+     }
+     Swal.fire({
+      title: "Login realizado com sucesso!",
+      icon: "success",
+      }).then(() =>{
+        window.location.href = "http://localhost:3000";
+      });
     });
   }
 

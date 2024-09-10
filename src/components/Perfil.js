@@ -13,6 +13,7 @@ function Perfil() {
     const [senhaNova, setSenhaNova] = useState("");
     const [saldoUsuario, setSaldoUsuario] = useState("");
     const [campoSaldo, setCampoSaldo] = useState("");
+
     const validateUser = async() => {
         const usuario = await getSession();
         if(!usuario){
@@ -177,6 +178,7 @@ function Perfil() {
                 icon: "success",
              });
              getSession();
+
         });
     }
 
@@ -272,6 +274,7 @@ function Perfil() {
                         <h3>Adicionar Saldo</h3>
                         <input
                             onChange={(e) => setCampoSaldo(e.target.value)}
+
                             type="number"
                             placeholder="Valor"
                             className="perfil-info"
