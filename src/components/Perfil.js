@@ -39,7 +39,6 @@ function Perfil() {
         
         setUsuario(json.user.usuario);
         setTelefone(json.user.celular);
-        setCampoSaldo(json.user.saldo);
         setSaldoUsuario(json.user.saldo);
         
         return json.user;
@@ -164,20 +163,30 @@ function Perfil() {
             }),
         })
         .then(async (response) => {
-            if(!response.ok){
-                const body = await response.json();
-                Swal.fire({
-                    title: `${body.message}`,
-                    icon: "error",
-                 });
-                return;
-            }
-
             Swal.fire({
-                title: "Saldo adicionado com sucesso!",
-                icon: "success",
-             });
-             getSession();
+                title: 'Efetuado Pagamento',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 2000,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(async () =>{
+                if(!response.ok){
+                    const body = await response.json();
+                    Swal.fire({
+                        title: `${body.message}`,
+                        icon: "error",
+                        });
+                    return;
+                }
+    
+                Swal.fire({
+                    title: "Saldo adicionado com sucesso!",
+                    icon: "success",
+                    });
+                    getSession();
+            })
 
         });
     }

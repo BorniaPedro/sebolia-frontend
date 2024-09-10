@@ -74,20 +74,31 @@ function VendaLivro() {
             })
         })
         .then(async (response) => {
-            if(!response.ok){
-                const body = await response.json();
-                Swal.fire({
-                    title: `${body.message}`,
-                    icon: "error",
-                 });
-                return;
-            }
             Swal.fire({
-                title: "Venda realizada com sucesso!",
-                icon: "success",
-             }).then(() =>{
-                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
-             });
+                title: 'Realizando a venda',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 2000,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(async () =>{
+                if(!response.ok){
+                    const body = await response.json();
+                    Swal.fire({
+                        title: `${body.message}`,
+                        icon: "error",
+                     });
+                    return;
+                }
+                Swal.fire({
+                    title: "Venda realizada com sucesso!",
+                    icon: "success",
+                 }).then(() =>{
+                     window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
+                 });
+            })
+            
 
         });
     }
