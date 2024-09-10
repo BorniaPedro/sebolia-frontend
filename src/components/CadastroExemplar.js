@@ -135,7 +135,7 @@ function ListarExemplar() {
                         value={livroSelecionado} 
                         onChange={(e) => setLivroSelecionado(e.target.value)}>
                     <option value="">Selecione</option>
-                    {books.map((book) => (
+                    {books.length > 0 && books.map((book) => (
                         <option value={book.id}>{book.titulo}</option>
                     ))}
                 </select>

@@ -98,7 +98,7 @@ function ListagemLivros() {
 
       <table className="livro-table">
         <tbody>
-          {books.map((book) => (
+          {books.length > 0 && books.map((book) => (
             <tr key={book.id} className="livro-container">
               <td colSpan="5">
                 <div className="livro-titulo">{book.titulo}</div>
