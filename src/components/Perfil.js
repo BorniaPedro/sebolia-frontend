@@ -9,14 +9,21 @@ function Perfil() {
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
     const [usuario, setUsuario] = useState("");
     const [telefone, setTelefone] = useState("");
-
+    const [senhaAntiga, setSenhaAntiga] = useState("");
+    const [senhaNova, setSenhaNova] = useState("");
+    const [saldoUsuario, setSaldoUsuario] = useState("");
+    const [campoSaldo, setCampoSaldo] = useState("");
     const validateUser = async() => {
         const usuario = await getSession();
         if(!usuario){
-          alert("É necessário estar logado para acessar essa tela");
-          window.location.href = "http://localhost:3000/Login";
+          Swal.fire({
+            title: "É necessário estar logado para acessar essa tela",
+            icon: "error",
+          }).then(() =>{
+            window.location.href = "http://localhost:3000/Login";
+          });
         }
-    }
+      }
 
     const getSession = async () =>{
         const url = "http://localhost:3500/login/session";
@@ -31,6 +38,8 @@ function Perfil() {
         
         setUsuario(json.user.usuario);
         setTelefone(json.user.celular);
+        setCampoSaldo(json.user.saldo);
+        setSaldoUsuario(json.user.saldo);
         
         return json.user;
     }
@@ -65,20 +74,115 @@ function Perfil() {
                  });
                 return;
             }
-
+            Swal.fire({
+               title: "Perfil atualizado com sucesso!",
+               icon: "success",
+            });
         });
 
-        Swal.fire({
-           title: "Perfil atualizado com sucesso!",
-           icon: "success",
-        });
         
     };
+
+    const handleAtualizarSenha = async (e) => {
+        e.preventDefault();
+        const url = "http://localhost:3500/cadastro/alterarSenha";
+        
+        fetch(url, {
+            method: "PUT",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                senhaAntiga,
+                senhaNova
+            }),
+        })
+        .then(async (response) => {
+            if(!response.ok){
+                const body = await response.json();
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
+                return;
+            }
+
+            Swal.fire({
+                title: "Senha atualizada com sucesso!",
+                icon: "success",
+             });
+
+        });
+    }
+
+    const handleDeleteConta = async (e) => {
+        e.preventDefault();
+        const url = "http://localhost:3500/cadastro";
+
+        fetch(url, {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(async (response) => {
+            if(!response.ok){
+                const body = await response.json();
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
+                return;
+            }
+
+            Swal.fire({
+                title: "Conta deletada com sucesso!",
+                icon: "success",
+             }).then(() => {
+                window.location.href = "http://localhost:3000/CriarConta";
+             });
+             
+        });
+    }
+
+    const handleAdicionarSaldo = async (e) => {
+        e.preventDefault();
+        
+        const url = "http://localhost:3500/cadastro/adicionarSaldo";
+        
+        fetch(url, {
+            method: "PUT",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                saldo: campoSaldo
+            }),
+        })
+        .then(async (response) => {
+            if(!response.ok){
+                const body = await response.json();
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
+                return;
+            }
+
+            Swal.fire({
+                title: "Saldo adicionado com sucesso!",
+                icon: "success",
+             });
+             getSession();
+        });
+    }
 
     // Funções para abrir e fechar as modais
     const openPasswordModal = () => {
         setIsPasswordModalOpen(true);
-        
     };
 
     const closePasswordModal = () => {
@@ -93,13 +197,6 @@ function Perfil() {
         setIsAddBalanceModalOpen(false);
     };
 
-    const openDeleteAccountModal = () => {
-        setIsDeleteAccountModalOpen(true);
-    };
-
-    const closeDeleteAccountModal = () => {
-        setIsDeleteAccountModalOpen(false);
-    };
 
     return (
         <div className="perfil-container">
@@ -107,6 +204,7 @@ function Perfil() {
                 <Link to="/" className="voltar-button">Voltar</Link>
                 <h2 className="perfil-titulo">Perfil</h2>
             </div>
+                <h2 className="saldo">Seu saldo: {saldoUsuario} </h2>
 
             <form action="#" className="perfil-form">
                 <input
@@ -133,11 +231,11 @@ function Perfil() {
                     Alterar Senha
                 </button>
 
-                <button className="saldo-button" onClick={openAddBalanceModal}>
+            <button className="saldo-button" onClick={openAddBalanceModal}>
                     Adicionar saldo
                 </button>
 
-                <button className="excluir-button" onClick={openDeleteAccountModal}>
+                <button className="excluir-button" onClick={handleDeleteConta}>
                     Excluir conta
                 </button>
             </div>
@@ -148,16 +246,18 @@ function Perfil() {
                     <div className="modal-content">
                         <h3>Alterar Senha</h3>
                         <input
+                            onChange={(e) => setSenhaAntiga(e.target.value)}
                             type="password"
-                            placeholder="Nova senha"
+                            placeholder="Senha Antiga"
                             className="perfil-info"
-                        />
+                            />
                         <input
+                            onChange={(e) => setSenhaNova(e.target.value)}
                             type="password"
-                            placeholder="Confirmar nova senha"
+                            placeholder="Senha Nova"
                             className="perfil-info"
                         />
-                        <button className="perfil-button">Salvar Senha</button>
+                        <button className="perfil-button" onClick={handleAtualizarSenha}>Salvar Senha</button>
                         <button className="close-button" onClick={closePasswordModal}>
                             Fechar
                         </button>
@@ -171,11 +271,12 @@ function Perfil() {
                     <div className="modal-content">
                         <h3>Adicionar Saldo</h3>
                         <input
+                            onChange={(e) => setCampoSaldo(e.target.value)}
                             type="number"
                             placeholder="Valor"
                             className="perfil-info"
                         />
-                        <button className="perfil-button">Adicionar</button>
+                        <button onClick={handleAdicionarSaldo} className="perfil-button">Adicionar</button>
                         <button className="close-button" onClick={closeAddBalanceModal}>
                             Fechar
                         </button>
@@ -195,9 +296,6 @@ function Perfil() {
                             className="perfil-info"
                         />
                         <button className="excluirConta-button">Excluir Conta</button>
-                        <button className="close-button" onClick={closeDeleteAccountModal}>
-                            Fechar
-                        </button>
                     </div>
                 </div>
             )}

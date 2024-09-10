@@ -1,17 +1,21 @@
 import React, {useState, useEffect} from "react";
 import "../styles/listagemLivros.css";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 import { useLocation } from 'react-router-dom';
 
 function ListarExemplar() {
   const [exemplares, setExemplares] = useState([]);
   const [user, setUser] = useState(null);
+  const [livro, setLivro] = useState('');
+  const [saldo, setSaldo] = useState('');
 
   const location = useLocation();
   const param = location.search.split("=");
 
   const getExemplares = async () => {
     let livro;
+    setLivro(livro);
     if(param && param[0] === "?livro"){
       livro = param[1];
     }
@@ -31,6 +35,7 @@ function ListarExemplar() {
 
     const json = await response.json();
     setUser(json.user);
+    setSaldo(json.user.saldo);
     return json.user;
   }
   
@@ -52,8 +57,12 @@ function ListarExemplar() {
   const validateUser = async() => {
     const usuario = await getSession();
     if(!usuario){
-      alert("É necessário estar logado para acessar essa tela");
-      window.location.href = "http://localhost:3000/Login";
+      Swal.fire({
+        title: "É necessário estar logado para acessar essa tela",
+        icon: "error",
+      }).then(() =>{
+        window.location.href = "http://localhost:3000/Login";
+      });
     }
   }
 
@@ -76,11 +85,13 @@ function ListarExemplar() {
         credentials: "include"
     })
     .then(async (response) => {
-        if(!response.ok){
-            const body = await response.json();
-            alert(body.message);
-            return;
-        }
+      if(!response.ok){
+        const body = await response.json();
+        Swal.fire({
+            title: `${body.message}`,
+            icon: "error",
+         });
+     }
 
         getExemplares();
     });
@@ -88,11 +99,15 @@ function ListarExemplar() {
 
   return (
     <div className="listagem-container">
+      <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>	
       <div className="header">
         <h2 className="titulo">Listagem de Exemplares</h2>
+        {user?.role == "admin" &&
           <Link to="/CadastroExemplar" className="cadastro-exemplar">
             Cadastrar Exemplares
           </Link>
+        }
+        <h2 className="saldo">Seu saldo: {saldo}</h2>
       </div>
       <table className="livro-table">
         <tbody>
