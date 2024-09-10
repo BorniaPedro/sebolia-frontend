@@ -206,7 +206,7 @@ function Perfil() {
                 <Link to="/" className="voltar-button">Voltar</Link>
                 <h2 className="perfil-titulo">Perfil</h2>
             </div>
-                <h2 className="saldo-perfil">Seu saldo: {saldoUsuario} </h2>
+                <span className="saldo-perfil">Seu saldo: {saldoUsuario} </span>
 
             <form action="#" className="perfil-form">
                 <input
