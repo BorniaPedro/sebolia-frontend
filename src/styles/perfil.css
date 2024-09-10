@@ -12,6 +12,14 @@
     position: relative;
 }
 
+.saldo{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 16px;
+    color: gray;
+}
+
 .perfil-header {
     display: flex; 
     flex-direction: row;

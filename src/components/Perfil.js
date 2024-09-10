@@ -11,7 +11,8 @@ function Perfil() {
     const [telefone, setTelefone] = useState("");
     const [senhaAntiga, setSenhaAntiga] = useState("");
     const [senhaNova, setSenhaNova] = useState("");
-    const [saldo, setSaldo] = useState("");
+    const [saldoUsuario, setSaldoUsuario] = useState("");
+    const [campoSaldo, setCampoSaldo] = useState("");
 
     const validateUser = async() => {
         const usuario = await getSession();
@@ -38,6 +39,8 @@ function Perfil() {
         
         setUsuario(json.user.usuario);
         setTelefone(json.user.celular);
+        setCampoSaldo(json.user.saldo);
+        setSaldoUsuario(json.user.saldo);
         
         return json.user;
     }
@@ -157,7 +160,7 @@ function Perfil() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                saldo
+                saldo: campoSaldo
             }),
         })
         .then(async (response) => {
@@ -174,6 +177,7 @@ function Perfil() {
                 title: "Saldo adicionado com sucesso!",
                 icon: "success",
              });
+             getSession();
 
         });
     }
@@ -202,6 +206,7 @@ function Perfil() {
                 <Link to="/" className="voltar-button">Voltar</Link>
                 <h2 className="perfil-titulo">Perfil</h2>
             </div>
+                <h2 className="saldo">Seu saldo: {saldoUsuario} </h2>
 
             <form action="#" className="perfil-form">
                 <input
@@ -228,7 +233,7 @@ function Perfil() {
                     Alterar Senha
                 </button>
 
-                <button className="saldo-button" onClick={openAddBalanceModal}>
+            <button className="saldo-button" onClick={openAddBalanceModal}>
                     Adicionar saldo
                 </button>
 
@@ -268,7 +273,8 @@ function Perfil() {
                     <div className="modal-content">
                         <h3>Adicionar Saldo</h3>
                         <input
-                            onChange={(e) => setSaldo(e.target.value)}
+                            onChange={(e) => setCampoSaldo(e.target.value)}
+
                             type="number"
                             placeholder="Valor"
                             className="perfil-info"
