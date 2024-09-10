@@ -204,7 +204,7 @@ function Perfil() {
         <div className="perfil-container">
             <div className="perfil-header">   
                 <Link to="/" className="voltar-button">Voltar</Link>
-                <h2 className="perfil-titulo">Perfil</h2>
+                <span className="perfil-titulo">Perfil</span>
             </div>
                 <h2 className="saldo-perfil">Seu saldo: {saldoUsuario} </h2>
 
