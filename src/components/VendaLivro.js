@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 import "../styles/vendaLivro.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
 
 function VendaLivro() {
 
@@ -24,10 +26,14 @@ function VendaLivro() {
     const validateUser = async() => {
         const usuario = await getSession();
         if(!usuario){
-          alert("É necessário estar logado para acessar essa tela");
-          window.location.href = "http://localhost:3000/Login";
+          Swal.fire({
+            title: "É necessário estar logado para acessar essa tela",
+            icon: "error",
+          }).then(() =>{
+            window.location.href = "http://localhost:3000/Login";
+          });
         }
-    }
+      }
 
     const getExemplar = async () =>{
         const livro = params.get('livro');
@@ -70,17 +76,25 @@ function VendaLivro() {
         .then(async (response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
+            Swal.fire({
+                title: "Venda realizada com sucesso!",
+                icon: "success",
+             }).then(() =>{
+                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
+             });
 
-            alert("Venda realizada com sucesso!");
-            window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
         });
     }
 
     return (
         <div className="vendaLivro-container">
+            <Link to={`/ListarExemplar/?livro=${livro.livroId}`} className="voltar-button">Voltar</Link>
             <div className="vendaLivro-header">
                 <h2>Venda de Livro</h2>
             </div>

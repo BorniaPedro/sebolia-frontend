@@ -2,6 +2,10 @@
 
 O Sebolia Frontend é o frontend de um sebo online, permitindo aos usuários navegar, buscar e adquirir livros usados de forma simples e intuitiva.
 
+# Sebolia Backend
+
+- [backend](https://github.com/viictor1/Sebolia)
+
 ---
 
 # Funcionalidades
@@ -21,6 +25,8 @@ O Sebolia Frontend é o frontend de um sebo online, permitindo aos usuários nav
 - Gerenciamento Simples de Livros e Exemplares
 
   - Facilita a adição, edição e remoção de livros e seus exemplares, tornando a administração do catálogo intuitiva.
+
+- Compra e venda de livros
  
 ---
 
@@ -30,8 +36,7 @@ O Sebolia Frontend é o frontend de um sebo online, permitindo aos usuários nav
 
 Certifique-se de que você tenha as seguintes ferramentas instaladas:
 
-- [Node.js](https://nodejs.org/pt)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [docker](https://www.docker.com/)
 
 ## Git Clone
 
@@ -49,21 +54,16 @@ git clone https://github.com/BorniaPedro/sebolia-frontend.git
 cd sebolia-frontend
 ```
 
-3. Instale as dependências:
-
+3. Buildar a imagem
 ```bash
-npm install
-# ou
-yarn install
+docker build -t sebolia-frontend .
 ```
 
-4. Inicie o servidor:
-
+4. Rodar o container
 ```bash
-npm start
-# ou
-yarn start
+docker run -p 3000:3000 sebolia-frontend
 ```
+
 A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
 

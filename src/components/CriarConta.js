@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "../styles/login.css"
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { Link } from 'react-router-dom';
+
+
 
 function CriarConta() {
     // const [nome, setNome] = useState("");
@@ -28,10 +32,19 @@ function CriarConta() {
         .then(async(response) => {
             if(!response.ok){
                 const body = await response.json();
-                alert(body.message);
+                Swal.fire({
+                    title: `${body.message}`,
+                    icon: "error",
+                 });
                 return;
             }
-            alert("Usuário cadastrado com sucesso");
+            
+            Swal.fire({
+                title: "Usuário cadastrado com sucesso",
+                icon: "success",
+             }).then(() =>{
+                window.location.href = "http://localhost:3000/Login";
+             });
         });
     };
     
@@ -70,6 +83,9 @@ function CriarConta() {
                 />
 
                 <button onClick={handleSubmit} className="login-button">Criar Conta</button>
+                <Link to="/Login" className="create-account">
+                    Já possui uma conta?
+                </Link>
             </form>
         </div>
     )
