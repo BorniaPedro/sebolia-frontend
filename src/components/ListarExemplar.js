@@ -142,7 +142,7 @@ function ListarExemplar() {
       ))}
     </tbody>
   </table>
-  <h2 className="saldo">Seu saldo: {saldo}</h2>
+  <span className="saldo-listagem">Seu saldo: {saldo}</span>
 </div>
 
   );
