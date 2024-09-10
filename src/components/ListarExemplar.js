@@ -8,7 +8,6 @@ function ListarExemplar() {
   const [exemplares, setExemplares] = useState([]);
   const [user, setUser] = useState(null);
   const [livro, setLivro] = useState('');
-  const [saldo, setSaldo] = useState('');
 
   const location = useLocation();
   const param = location.search.split("=");
@@ -35,7 +34,6 @@ function ListarExemplar() {
 
     const json = await response.json();
     setUser(json.user);
-    setSaldo(json.user.saldo);
     return json.user;
   }
   
@@ -107,7 +105,6 @@ function ListarExemplar() {
             Cadastrar Exemplares
           </Link>
         }
-        <h2 className="saldo">Seu saldo: {saldo}</h2>
       </div>
       <table className="livro-table">
         <tbody>
