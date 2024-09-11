@@ -14,6 +14,7 @@ function Perfil() {
     const [senhaNova, setSenhaNova] = useState("");
     const [saldoUsuario, setSaldoUsuario] = useState("");
     const [campoSaldo, setCampoSaldo] = useState("");
+    const [senhaExcluir, setSenhaExcluir] = useState("");
 
     const validateUser = async() => {
         const usuario = await getSession();
@@ -126,7 +127,10 @@ function Perfil() {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
+            body: JSON.stringify({
+                senha: senhaExcluir
+            })
         })
         .then(async (response) => {
             if(!response.ok){
@@ -209,6 +213,13 @@ function Perfil() {
         setIsAddBalanceModalOpen(false);
     };
 
+    const openDeleteAccountModal = () => {
+        setIsDeleteAccountModalOpen(true);
+    }
+
+    const closeDeleteAccountModal = () => {
+        setIsDeleteAccountModalOpen(false);
+    }
 
     return (
         <div className="perfil-container">
@@ -247,7 +258,7 @@ function Perfil() {
                     Adicionar saldo
                 </button>
 
-                <button className="excluir-button" onClick={handleDeleteConta}>
+                <button className="excluir-button" onClick={openDeleteAccountModal}>
                     Excluir conta
                 </button>
             </div>
@@ -309,11 +320,13 @@ function Perfil() {
                         <h3>Excluir Conta</h3>
                         <p className="excluir-content">Para confirmar a exclusão, digite sua senha:</p>
                         <input
+                            onChange={(e) => setSenhaExcluir(e.target.value)}
                             type="password"
                             placeholder="Senha"
                             className="perfil-info"
                         />
-                        <button className="excluirConta-button">Excluir Conta</button>
+                        <button className="excluirConta-button" onClick={handleDeleteConta}>Excluir Conta</button>
+                        <button className="close-button" onClick={closeDeleteAccountModal}>Fechar</button>
                     </div>
                 </div>
             )}
