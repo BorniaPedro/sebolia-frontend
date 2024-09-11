@@ -21,6 +21,7 @@ body {
 }
 
 .listagem-container {
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,13 +33,21 @@ body {
   margin-top: 60px;
 }
 
+.saldo-listagem{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 16px;
+  color: gray;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   margin-top: 1rem;
   position: relative;
 }
@@ -47,6 +56,14 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.titulo-exemplar {
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: sticky;
   left: 50%;
   transform: translateX(-50%);
 }
