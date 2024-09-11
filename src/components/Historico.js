@@ -44,8 +44,8 @@ function Historico() {
 
     return(
         <div className="historico-container">
-          <Link to="/" className="voltar-button">Voltar</Link>
           <div className="header">
+            <Link to="/" className="voltar-button-historico">Voltar</Link>
             <h2 className="historico-titulo">Histórico do usuário</h2>
           </div>
             

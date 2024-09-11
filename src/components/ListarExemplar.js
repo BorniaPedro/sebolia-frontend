@@ -99,8 +99,8 @@ function ListarExemplar() {
   
   return (
     <div className="listagem-container">
-    <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>  
     <div className="header">
+      <Link to="/ListagemLivros" className="voltar-button-exemplar">Voltar</Link>  
       <h2 className="titulo-exemplar">Listagem de Exemplares</h2>
       {user?.role === "admin" &&
         <Link to="/CadastroExemplar" className="cadastro-exemplar">
