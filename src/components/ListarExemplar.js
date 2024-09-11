@@ -110,7 +110,7 @@ function ListarExemplar() {
     </div>
     <table className="livro-table">
       <tbody>
-        {exemplares.length > 0 exemplares.map((ex) => (
+        {exemplares.length > 0 && exemplares.map((ex) => (
           <tr key={ex.livroId + ex.estado} className="livro-container">
             <td colSpan="5">
               <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
