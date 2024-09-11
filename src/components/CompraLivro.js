@@ -112,11 +112,11 @@ function CompraLivro() {
             </div>
             <form className="vendaLivro-form">
                 <p>Livro</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo}/>
+                <input type="text" className="vendaInfo" readOnly disabled defaultValue={livro.titulo}/>
                 <p>Estado de conservação</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={estado}/>
+                <input type="text" className="vendaInfo" readOnly disabled defaultValue={estado}/>
                 <p>Preço</p>
-                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly/>
+                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly disabled/>
                 <button className="vendaLivro-button" onClick={handleSubmit}>Comprar Livro</button>
             </form>
         </div>
