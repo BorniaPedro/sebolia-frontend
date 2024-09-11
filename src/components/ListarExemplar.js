@@ -8,7 +8,6 @@ function ListarExemplar() {
   const [exemplares, setExemplares] = useState([]);
   const [user, setUser] = useState(null);
   const [livro, setLivro] = useState('');
-  const [saldo, setSaldo] = useState("");
 
   const location = useLocation();
   const param = location.search.split("=");
@@ -35,7 +34,7 @@ function ListarExemplar() {
 
     const json = await response.json();
     setUser(json.user);
-    setSaldo(json.user.saldo);
+    
     return json.user;
   }
   
@@ -142,7 +141,7 @@ function ListarExemplar() {
       ))}
     </tbody>
   </table>
-  <span className="saldo-listagem">Seu saldo: {saldo}</span>
+  <span className="saldo-listagem">Seu saldo: {user?.saldo}</span>
 </div>
 
   );
