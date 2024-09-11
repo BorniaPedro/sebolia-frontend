@@ -86,13 +86,10 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
     font-size: 16px;
     position: absolute;
-    top: 10px; 
+    margin-top: 10px;
     left: 10px;
     text-decoration: none;
     outline: none;
     box-shadow: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0.5rem 1rem;
 }
