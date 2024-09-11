@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import "../styles/cadastroExemplar.css"
 import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 import { Link } from "react-router-dom";
+import { NumericFormat } from 'react-number-format'
 
 function ListarExemplar() {
 
@@ -91,7 +92,7 @@ function ListarExemplar() {
             body: JSON.stringify({
                 livroId: livroSelecionado,
                 estado: estadoSelecionado,
-                preco: preco,
+                preco: String(preco).replace('R$ ', '').replace(',', '.'),
                 quantidade: quantidade,
             })
         })
@@ -135,7 +136,7 @@ function ListarExemplar() {
                         value={livroSelecionado} 
                         onChange={(e) => setLivroSelecionado(e.target.value)}>
                     <option value="">Selecione</option>
-                    {books.map((book) => (
+                    {books.length > 0 && books.map((book) => (
                         <option value={book.id}>{book.titulo}</option>
                     ))}
                 </select>
@@ -156,12 +157,16 @@ function ListarExemplar() {
                        value={quantidade}
                        onChange={(e) => setQuantidade(e.target.value)}/>
                 <p>Preço</p>
-                <input 
-                    type="number" 
-                    className="exemplarInfo" 
-                    step="0.01" min="0" required
+                <NumericFormat
+                    className="exemplarInfo"
+                    decimalSeparator=","
+                    prefix="R$ "
+                    decimalScale={2}
+                    required
                     value={preco}
-                    onChange={(e) => setPreco(e.target.value)}/>
+                    allowNegative={false}
+                    onChange={(e) => {setPreco(e.target.value)}}
+                />
                 <button className="cadastroExemplar-button" onClick={handleSalvar}>Cadastrar Exemplar</button>
             </form>
         </div>

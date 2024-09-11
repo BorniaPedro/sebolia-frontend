@@ -16,16 +16,17 @@
     "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-number-format": "^5.4.2",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "^5.0.1",
     "resolve-url-loader": "^5.0.0",
     "sourcemap-codec": "^1.4.8",
     "svgo": "^2.0.0",
-    "sweetalert2": "^11.14.0",
+    "sweetalert2": "^11.6.13",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "react-scripts": "^5.0.1"
   },
   "scripts": {

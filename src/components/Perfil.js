@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/perfil.css";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { NumericFormat } from 'react-number-format'
 
 function Perfil() {
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
@@ -39,7 +40,6 @@ function Perfil() {
         
         setUsuario(json.user.usuario);
         setTelefone(json.user.celular);
-        setCampoSaldo(json.user.saldo);
         setSaldoUsuario(json.user.saldo);
         
         return json.user;
@@ -160,24 +160,34 @@ function Perfil() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                saldo: campoSaldo
+                saldo: campoSaldo.replace('R$ ', '').replace(',', '.')
             }),
         })
         .then(async (response) => {
-            if(!response.ok){
-                const body = await response.json();
-                Swal.fire({
-                    title: `${body.message}`,
-                    icon: "error",
-                 });
-                return;
-            }
-
             Swal.fire({
-                title: "Saldo adicionado com sucesso!",
-                icon: "success",
-             });
-             getSession();
+                title: 'Efetuado Pagamento',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 2000,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(async () =>{
+                if(!response.ok){
+                    const body = await response.json();
+                    Swal.fire({
+                        title: `${body.message}`,
+                        icon: "error",
+                        });
+                    return;
+                }
+    
+                Swal.fire({
+                    title: "Saldo adicionado com sucesso!",
+                    icon: "success",
+                    });
+                    getSession();
+            })
 
         });
     }
@@ -272,13 +282,18 @@ function Perfil() {
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Adicionar Saldo</h3>
-                        <input
-                            onChange={(e) => setCampoSaldo(e.target.value)}
-
-                            type="number"
+                        <NumericFormat
+                            decimalSeparator=","
+                            prefix="R$ "
+                            decimalScale={2}
+                            required
+                            value={campoSaldo}
+                            allowNegative={false}
                             placeholder="Valor"
                             className="perfil-info"
+                            onChange={(e) => setCampoSaldo(e.target.value)}
                         />
+
                         <button onClick={handleAdicionarSaldo} className="perfil-button">Adicionar</button>
                         <button className="close-button" onClick={closeAddBalanceModal}>
                             Fechar

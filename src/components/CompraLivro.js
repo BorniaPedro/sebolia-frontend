@@ -75,22 +75,32 @@ function CompraLivro() {
             })
         })
         .then(async (response) => {
-            if(!response.ok){
-                const body = await response.json();
-                Swal.fire({
-                    title: `${body.message}`,
-                    icon: "error",
-                 });
-                return;
-            }
-
             Swal.fire({
-                title: "Compra realizada com sucesso!",
-                icon: "success",
-             }).then(() =>{
-                 window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
-             });
-
+                title: 'Realizando a compra',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 2000,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(async () =>{
+                if(!response.ok){
+                    const body = await response.json();
+                    Swal.fire({
+                        title: `${body.message}`,
+                        icon: "error",
+                     });
+                    return;
+                }
+    
+                Swal.fire({
+                    title: "Compra realizada com sucesso!",
+                    icon: "success",
+                 }).then(() =>{
+                     window.location.href = `http://localhost:3000/ListarExemplar/?livro=${livro.livroId}`;
+                 });
+            })
+            
         });
     }
 
@@ -102,11 +112,11 @@ function CompraLivro() {
             </div>
             <form className="vendaLivro-form">
                 <p>Livro</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={livro.titulo}/>
+                <input type="text" className="vendaInfo" readOnly disabled defaultValue={livro.titulo}/>
                 <p>Estado de conservação</p>
-                <input type="text" className="vendaInfo" readOnly defaultValue={estado}/>
+                <input type="text" className="vendaInfo" readOnly disabled defaultValue={estado}/>
                 <p>Preço</p>
-                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly/>
+                <input type="number" className="vendaInfo" step="0.01" min="0" defaultValue={preco} readOnly disabled/>
                 <button className="vendaLivro-button" onClick={handleSubmit}>Comprar Livro</button>
             </form>
         </div>

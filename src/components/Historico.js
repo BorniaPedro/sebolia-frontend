@@ -53,7 +53,7 @@ function Historico() {
 
             <table className="historico-table">
                 <tbody>
-                    {transactions.map((t, index) => (
+                    {transactions.length > 0 && transactions.map((t, index) => (
                     <tr className="historico-info" key={index}>
                         <td className="historico-livroTitulo">{t.tituloLivro}</td>
                         <td className="historico-livroInfo">

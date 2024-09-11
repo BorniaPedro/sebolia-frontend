@@ -99,39 +99,39 @@ function ListarExemplar() {
   
   return (
     <div className="listagem-container">
-  <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>  
-  <div className="header">
-    <h2 className="titulo-exemplar">Listagem de Exemplares</h2>
-    {user?.role === "admin" &&
-      <Link to="/CadastroExemplar" className="cadastro-exemplar">
-        Cadastrar Exemplares
-      </Link>
-    }
-  </div>
-  <table className="livro-table">
-    <tbody>
-      {exemplares.map((ex) => (
-        <tr key={ex.livroId + ex.estado} className="livro-container">
-          <td colSpan="5">
-            <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
-            <div className="livro-info">
-              <span className="livro-autor">Preço: R${ex.preco}</span>
-              <span className="livro-editora">Quantidade em Estoque: {ex.quantidade}</span>
-            </div>
-            <button className="livro-editar" onClick={() => toggleOptions(`${ex.livroId} - ${ex.estado}`)}>
-              <span className="material-symbols-outlined">more_vert</span>
-            </button>
-            {showOptions[`${ex.livroId} - ${ex.estado}`] && (
-              <div className="opcoes-menu">
-                <Link to={`/VendaLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Vender</Link>
-                <Link to={`/CompraLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Comprar</Link>
-                {user?.role === "admin" && (
-                  <>
-                  <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">
-                      Editar Exemplar
-                  </Link>
-                  <div onClick={() => removerExemplar(ex.livroId, ex.estado)} className="opcoes">
-                    Remover Exemplar
+    <Link to="/ListagemLivros" className="voltar-button">Voltar</Link>  
+    <div className="header">
+      <h2 className="titulo-exemplar">Listagem de Exemplares</h2>
+      {user?.role === "admin" &&
+        <Link to="/CadastroExemplar" className="cadastro-exemplar">
+          Cadastrar Exemplares
+        </Link>
+      }
+    </div>
+    <table className="livro-table">
+      <tbody>
+        {exemplares.length > 0 exemplares.map((ex) => (
+          <tr key={ex.livroId + ex.estado} className="livro-container">
+            <td colSpan="5">
+              <div className="livro-titulo">{ex.livroTitulo} - {ex.estado}</div>
+              <div className="livro-info">
+                <span className="livro-autor">Preço: R${ex.preco}</span>
+                <span className="livro-editora">Quantidade em Estoque: {ex.quantidade}</span>
+              </div>
+              <button className="livro-editar" onClick={() => toggleOptions(`${ex.livroId} - ${ex.estado}`)}>
+                <span className="material-symbols-outlined">more_vert</span>
+              </button>
+              {showOptions[`${ex.livroId} - ${ex.estado}`] && (
+                <div className="opcoes-menu">
+                  <Link to={`/VendaLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Vender</Link>
+                  <Link to={`/CompraLivro/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">Comprar</Link>
+                  {user?.role === "admin" && (
+                    <>
+                    <Link to={`/CadastroExemplar/?livro=${ex.livroId}&estado=${ex.estado}`} className="opcoes">
+                        Editar Exemplar
+                    </Link>
+                    <div onClick={() => removerExemplar(ex.livroId, ex.estado)} className="opcoes">
+                      Remover Exemplar
                   </div>
                   </>
                 )}
